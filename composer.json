@@ -1,9 +1,9 @@
 {
-    "name": "Jippi/cakephp-test-utilities",
+    "name": "jippi/cakephp-test-utilities",
     "description": "Plugin with support traits for easing CakePHP unit testing",
     "type": "cakephp-plugin",
     "keywords": ["cakephp", "test", "unit testing", "unittesting", "phpunit"],
-    "homepage": "https://github.com/Jippi/cakephp-test-utilities",
+    "homepage": "https://github.com/jippi/cakephp-test-utilities",
     "license": "MIT",
     "authors": [
         {
