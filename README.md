@@ -1,1 +1,1 @@
-yo
+bump packagist
