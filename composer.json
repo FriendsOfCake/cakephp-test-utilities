@@ -1,0 +1,17 @@
+{
+    "name": "Jippi/cakephp-test-utilities",
+    "description": "Plugin with support traits for easing CakePHP unit testing",
+    "type": "cakephp-plugin",
+    "keywords": ["cakephp", "test", "unit testing", "unittesting", "phpunit"],
+    "homepage": "https://github.com/Jippi/cakephp-test-utilities",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Christian Winther",
+            "role": "Author"
+        }
+    ],
+    "require": {
+        "composer/installers": "*"
+    }
+}
