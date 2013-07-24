@@ -31,6 +31,17 @@ trait AccessibilityHelperTrait {
 	protected $_reflectionInstanceCache = array();
 
 /**
+ * Reset the internal reflection caches
+ *
+ * @return void
+ */
+	public function resetReflectionCache() {
+		$this->_reflectionPropertyCache = array();
+		$this->_reflectionMethodCache = array();
+		$this->_reflectionInstanceCache = array();
+	}
+
+/**
  * Map a instance of a object to it's class name
  *
  * @param Object $instance
