@@ -138,11 +138,17 @@ trait AccessibilityHelperTrait {
  * @return string
  */
 	protected function _getReflectionTargetClass($class) {
+		if (is_object($class)) {
+			$class = get_class($class);
+		}
+
 		if (!empty($class)) {
 			return $class;
 		}
 
-		$class = $this->defaultRelfectionTarget;
+		if (isset($this->defaultRelfectionTarget)) {
+			$class = $this->defaultRelfectionTarget;
+		}
 
 		if (empty($class)) {
 			throw new Exception(sprintf('Unable to find reflection target; have you set $defaultRelfectionTarget or passed in class name?', $class));
