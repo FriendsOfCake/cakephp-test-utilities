@@ -148,6 +148,9 @@ trait AccessibilityHelperTrait {
 
 		if (isset($this->defaultRelfectionTarget)) {
 			$class = $this->defaultRelfectionTarget;
+			if (is_object($class)) {
+				$class = get_class($class);
+			}
 		}
 
 		if (empty($class)) {
