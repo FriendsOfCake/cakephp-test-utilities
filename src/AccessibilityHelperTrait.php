@@ -82,7 +82,7 @@ trait AccessibilityHelperTrait {
 		$cacheKey = $class . '_' . $method;
 
 		if (!in_array($cacheKey, $this->_reflectionMethodCache)) {
-			$this->_reflectionMethodCache[$cacheKey] = new ReflectionMethod($class, $method);
+			$this->_reflectionMethodCache[$cacheKey] = new \ReflectionMethod($class, $method);
 			$this->_reflectionMethodCache[$cacheKey]->setAccessible(true);
 		}
 
@@ -126,7 +126,7 @@ trait AccessibilityHelperTrait {
 		$cacheKey = $class . '_' . $property;
 
 		if (!in_array($cacheKey, $this->_reflectionPropertyCache)) {
-			$this->_reflectionPropertyCache[$cacheKey] = new ReflectionProperty($class, $property);
+			$this->_reflectionPropertyCache[$cacheKey] = new \ReflectionProperty($class, $property);
 			$this->_reflectionPropertyCache[$cacheKey]->setAccessible(true);
 		}
 
