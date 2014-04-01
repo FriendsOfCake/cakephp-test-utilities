@@ -18,7 +18,8 @@
     },
     "autoload": {
         "psr-4": {
-            "FriendsOfCake\\TestUtilities\\": "src"
+            "FriendsOfCake\\TestUtilities\\": "src",
+            "FriendsOfCake\\TestUtilities\\Test\\": "tests"
         }
     },
     "require": {
