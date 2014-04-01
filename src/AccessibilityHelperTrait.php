@@ -12,28 +12,28 @@ namespace FriendsOfCake\TestUtilities;
 trait AccessibilityHelperTrait {
 
 /**
- * List of Reflection properties made public
+ * List of Reflection properties made public.
  *
  * @var array
  */
 	protected $_reflectionPropertyCache = array();
 
 /**
- * List of Reflection methods made public
+ * List of Reflection methods made public.
  *
  * @var array
  */
 	protected $_reflectionMethodCache = array();
 
 /**
- * List of class name <=> instance used for invocation
+ * List of class names <=> instances used for invocation.
  *
  * @var array
  */
 	protected $_reflectionInstanceCache = array();
 
 /**
- * Reset the internal reflection caches
+ * Reset the internal reflection caches.
  *
  * @return void
  */
@@ -44,7 +44,7 @@ trait AccessibilityHelperTrait {
 	}
 
 /**
- * Map a instance of a object to it's class name
+ * Map an instance of an object to its class name.
  *
  * @param Object $instance
  * @return void
@@ -55,7 +55,7 @@ trait AccessibilityHelperTrait {
 	}
 
 /**
- * Get working instance of "$class"
+ * Get working instance of "$class".
  *
  * @param string $class
  * @return Object
@@ -70,7 +70,7 @@ trait AccessibilityHelperTrait {
 	}
 
 /**
- * Helper method to call a protected method
+ * Helper method to call a protected method.
  *
  * @param string $method
  * @param array $args Argument list to call $method with (call_user_func_array style)
@@ -90,7 +90,7 @@ trait AccessibilityHelperTrait {
 	}
 
 /**
- * Helper method to get the value of a protected property
+ * Helper method to get the value of a protected property.
  *
  * @param string $property
  * @param string $class Target reflection class
@@ -102,7 +102,7 @@ trait AccessibilityHelperTrait {
 	}
 
 /**
- * Helper method to set the value of a protected property
+ * Helper method to set the value of a protected property.
  *
  * @param string $property
  * @param mixed $value
@@ -115,7 +115,7 @@ trait AccessibilityHelperTrait {
 	}
 
 /**
- * Get a reflection property object
+ * Get a reflection property object.
  *
  * @param string $property
  * @param string $class
@@ -134,7 +134,7 @@ trait AccessibilityHelperTrait {
 	}
 
 /**
- * Get the reflection class name
+ * Get the reflection class name.
  *
  * @param string $class
  * @return string
