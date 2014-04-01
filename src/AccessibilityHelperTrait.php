@@ -148,15 +148,15 @@ trait AccessibilityHelperTrait {
 			return $class;
 		}
 
-		if (isset($this->defaultRelfectionTarget)) {
-			$class = $this->defaultRelfectionTarget;
+		if (isset($this->defaultReflectionTarget)) {
+			$class = $this->defaultReflectionTarget;
 			if (is_object($class)) {
 				$class = get_class($class);
 			}
 		}
 
 		if (empty($class)) {
-			throw new \Exception(sprintf('Unable to find reflection target; have you set $defaultRelfectionTarget or passed in class name?', $class));
+			throw new \Exception(sprintf('Unable to find reflection target; have you set $defaultReflectionTarget or passed in class name?', $class));
 		}
 
 		return $class;
