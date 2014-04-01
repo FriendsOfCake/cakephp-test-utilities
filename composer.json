@@ -1,17 +1,31 @@
 {
     "name": "jippi/cakephp-test-utilities",
-    "description": "Plugin with support traits for easing CakePHP unit testing",
-    "type": "cakephp-plugin",
-    "keywords": ["cakephp", "test", "unit testing", "unittesting", "phpunit"],
+    "description": "Package with support traits to ease unit testing.",
+    "keywords": ["test", "unit testing", "unittesting", "phpunit"],
     "homepage": "https://github.com/jippi/cakephp-test-utilities",
     "license": "MIT",
     "authors": [
         {
             "name": "Christian Winther",
             "role": "Author"
+        }, {
+            "name": "Frank de Graaf",
+            "role": "Polisher"
         }
     ],
+    "config": {
+        "preferred-install": "source"
+    },
+    "autoload": {
+        "psr-4": {
+            "FriendsOfCake\\TestUtilities\\": "src"
+        }
+    },
     "require": {
+        "php": ">=5.4",
         "composer/installers": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.0"
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+namespace FriendsOfCake\TestUtilities;
+
 /**
  *
  * Licensed under The MIT License
@@ -61,7 +63,7 @@ trait AccessibilityHelperTrait {
 	public function getReflectionInstance($class) {
 		$class = $this->_getReflectionTargetClass($class);
 		if (empty($this->_reflectionInstanceCache[$class])) {
-			throw new Exception(sprintf('Unable to find instance of %s in the reflection cache. Have you added it using "setReflectionClassInstance"?', $class));
+			throw new \Exception(sprintf('Unable to find instance of %s in the reflection cache. Have you added it using "setReflectionClassInstance"?', $class));
 		}
 
 		return $this->_reflectionInstanceCache[$class];
@@ -154,7 +156,7 @@ trait AccessibilityHelperTrait {
 		}
 
 		if (empty($class)) {
-			throw new Exception(sprintf('Unable to find reflection target; have you set $defaultRelfectionTarget or passed in class name?', $class));
+			throw new \Exception(sprintf('Unable to find reflection target; have you set $defaultRelfectionTarget or passed in class name?', $class));
 		}
 
 		return $class;
