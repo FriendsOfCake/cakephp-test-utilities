@@ -81,8 +81,8 @@ trait AccessibilityHelperTrait {
 		$class = $this->_getReflectionTargetClass($class);
 		$cacheKey = $class . '_' . $method;
 
-		if (!in_array($cacheKey, $this->_reflectionMethodCache)) {
-			$this->_reflectionMethodCache[$cacheKey] = new \ReflectionMethod($class, $method);
+		if (!isset($this->_reflectionMethodCache[$cacheKey])) {
+			$this->_reflectionMethodCache[$cacheKey] = $this->_getNewReflectionMethod($class, $method);
 			$this->_reflectionMethodCache[$cacheKey]->setAccessible(true);
 		}
 
@@ -126,7 +126,7 @@ trait AccessibilityHelperTrait {
 		$cacheKey = $class . '_' . $property;
 
 		if (!in_array($cacheKey, $this->_reflectionPropertyCache)) {
-			$this->_reflectionPropertyCache[$cacheKey] = new \ReflectionProperty($class, $property);
+			$this->_reflectionPropertyCache[$cacheKey] = $this->_getNewReflectionProperty($class, $property);
 			$this->_reflectionPropertyCache[$cacheKey]->setAccessible(true);
 		}
 
@@ -162,4 +162,25 @@ trait AccessibilityHelperTrait {
 		return $class;
 	}
 
+/**
+ * Gets a new ReflectionMethod instance. Extracted for testing purposes.
+ *
+ * @param mixed $class
+ * @param string $method
+ * @return \ReflectionMethod
+ */
+	protected function _getNewReflectionMethod($class, $method) {
+		return new \ReflectionMethod($class, $method);
+	}
+
+/**
+ * Gets a new ReflectionProperty instance. Extracted for testing purposes.
+ *
+ * @param mixed $class
+ * @param string $property
+ * @return \ReflectionProperty
+ */
+	protected function _getNewReflectionProperty($class, $property) {
+		return new \ReflectionProperty($class, $property);
+	}
 }
