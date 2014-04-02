@@ -125,7 +125,7 @@ trait AccessibilityHelperTrait {
 		$class = $this->_getReflectionTargetClass($class);
 		$cacheKey = $class . '_' . $property;
 
-		if (!in_array($cacheKey, $this->_reflectionPropertyCache)) {
+		if (!isset($this->_reflectionPropertyCache[$cacheKey])) {
 			$this->_reflectionPropertyCache[$cacheKey] = $this->_getNewReflectionProperty($class, $property);
 			$this->_reflectionPropertyCache[$cacheKey]->setAccessible(true);
 		}
