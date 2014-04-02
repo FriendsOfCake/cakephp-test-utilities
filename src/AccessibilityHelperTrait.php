@@ -119,7 +119,7 @@ trait AccessibilityHelperTrait {
  *
  * @param string $property
  * @param string $class
- * @return ReflectionProperty
+ * @return \ReflectionProperty
  */
 	protected function _getReflectionPropertyInstance($property, $class) {
 		$class = $this->_getReflectionTargetClass($class);
