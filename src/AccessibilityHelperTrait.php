@@ -12,6 +12,13 @@ namespace FriendsOfCake\TestUtilities;
 trait AccessibilityHelperTrait {
 
 /**
+ * Default target to use for reflection.
+ *
+ * @var Object|string
+ */
+	public $defaultReflectionTarget = null;
+
+/**
  * List of Reflection properties made public.
  *
  * @var array
@@ -140,26 +147,17 @@ trait AccessibilityHelperTrait {
  * @return string
  */
 	protected function _getReflectionTargetClass($class) {
-		if (is_object($class)) {
-			$class = get_class($class);
+		$class = $class ?: $this->defaultReflectionTarget;
+
+		if (!$class) {
+			throw new \Exception('Unable to find reflection target; have you set $defaultReflectionTarget or passed in a class name?');
 		}
 
-		if (!empty($class)) {
+		if (!is_object($class)) {
 			return $class;
 		}
 
-		if (isset($this->defaultReflectionTarget)) {
-			$class = $this->defaultReflectionTarget;
-			if (is_object($class)) {
-				$class = get_class($class);
-			}
-		}
-
-		if (empty($class)) {
-			throw new \Exception(sprintf('Unable to find reflection target; have you set $defaultReflectionTarget or passed in class name?', $class));
-		}
-
-		return $class;
+		return get_class($class);
 	}
 
 /**
