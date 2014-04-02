@@ -23,21 +23,21 @@ trait AccessibilityHelperTrait {
  *
  * @var array
  */
-	protected $_reflectionPropertyCache = array();
+	protected $_reflectionPropertyCache = [];
 
 /**
  * List of Reflection methods made public.
  *
  * @var array
  */
-	protected $_reflectionMethodCache = array();
+	protected $_reflectionMethodCache = [];
 
 /**
  * List of class names <=> instances used for invocation.
  *
  * @var array
  */
-	protected $_reflectionInstanceCache = array();
+	protected $_reflectionInstanceCache = [];
 
 /**
  * Reset the internal reflection caches.
@@ -45,9 +45,9 @@ trait AccessibilityHelperTrait {
  * @return void
  */
 	public function resetReflectionCache() {
-		$this->_reflectionPropertyCache = array();
-		$this->_reflectionMethodCache = array();
-		$this->_reflectionInstanceCache = array();
+		$this->_reflectionPropertyCache = [];
+		$this->_reflectionMethodCache = [];
+		$this->_reflectionInstanceCache = [];
 	}
 
 /**
@@ -84,7 +84,7 @@ trait AccessibilityHelperTrait {
  * @param string $class Target reflection class
  * @return mixed
  */
-	public function callProtectedMethod($method, $args = array(), $class = null) {
+	public function callProtectedMethod($method, $args = [], $class = null) {
 		$class = $this->_getReflectionTargetClass($class);
 		$cacheKey = $class . '_' . $method;
 
