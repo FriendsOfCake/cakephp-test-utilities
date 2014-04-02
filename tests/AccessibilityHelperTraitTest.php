@@ -310,4 +310,46 @@ class AccessibilityHelperTraitTest extends \PHPUnit_Framework_TestCase {
 		$this->assertSame($expected, $actual);
 	}
 
+/**
+ * Tests AccessibilityHelperTrait::_getReflectionTargetClass().
+ *
+ * With valid values.
+ */
+	public function testProtectedGetReflectionTargetClassValidValues() {
+		$expected = 'MyClass';
+		$actual = $this->callProtectedMethod('_getReflectionTargetClass', ['MyClass']);
+		$this->assertSame($expected, $actual);
+
+		$expected = get_class($this);
+		$actual = $this->callProtectedMethod('_getReflectionTargetClass', [$this]);
+		$this->assertSame($expected, $actual);
+
+		$this->_trait->defaultReflectionTarget = 'MyClass';
+
+		$expected = 'MyClass';
+		$actual = $this->callProtectedMethod('_getReflectionTargetClass', [null]);
+		$this->assertSame($expected, $actual);
+
+		$this->_trait->defaultReflectionTarget = $this;
+
+		$expected = get_class($this);
+		$actual = $this->callProtectedMethod('_getReflectionTargetClass', [null]);
+		$this->assertSame($expected, $actual);
+
+		$expected = 'MyClass';
+		$actual = $this->callProtectedMethod('_getReflectionTargetClass', ['MyClass']);
+		$this->assertSame($expected, $actual);
+	}
+
+/**
+ * Tests AccessibilityHelperTrait::_getReflectionTargetClass().
+ *
+ * With invalid values to trigger the exception.
+ *
+ * @expectedException \Exception
+ */
+	public function testProtectedGetReflectionTargetClassInvalidValues() {
+		$this->callProtectedMethod('_getReflectionTargetClass', [null]);
+	}
+
 }
