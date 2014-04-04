@@ -17,8 +17,8 @@ You should install this package into your project using composer. To do so you c
 
 The usage of these traits requires at least PHP 5.4. At this point there are two traits:
 
-1. `AccessibilityHelperTrait` : Gain access protected properties and methods.
-2. `CounterHelperTrait` : Uses counters to help with the order of expectations.
+1. [`AccessibilityHelperTrait`](#accessibilityhelpertrait) : Gain access protected properties and methods.
+2. [`CounterHelperTrait`](#counterhelpertrait) : Uses counters to help with the order of expectations.
 
 ### AccessibilityHelperTrait
 
