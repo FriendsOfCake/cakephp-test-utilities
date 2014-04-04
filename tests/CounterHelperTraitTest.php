@@ -1,9 +1,11 @@
 <?php
-require_once dirname(dirname(dirname(__FILE__))) . '/Lib/CounterHelperTrait.php';
 
-class CounterHelperTest extends PHPUnit_Framework_TestCase {
+namespace FriendsOfCake\TestUtilities\Test;
 
-	use CounterHelperTrait;
+class CounterHelperTest extends \PHPUnit_Framework_TestCase {
+
+	use \FriendsOfCake\TestUtilities\CounterHelperTrait;
+	const TRAIT_NAME = '\\FriendsOfCake\\TestUtilities\\CounterHelperTrait';
 
 	public function testNext() {
 		$next = $this->next();
@@ -11,9 +13,9 @@ class CounterHelperTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function testCounters() {
-		$this->Test = $this->getMock('CounterHelperTest', array('at'));
+		$this->Test = $this->getMockForTrait(self::TRAIT_NAME, [], '', true, true, true, ['at']);
 		$this->Test
-			->staticExpects($this->any())
+			->expects($this->any())
 			->method('at')
 			->will($this->returnCallback(function($input) {
 				return $input;
@@ -28,9 +30,9 @@ class CounterHelperTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function testCountersNamed() {
-		$this->Test = $this->getMock('CounterHelperTest', array('at'));
+		$this->Test = $this->getMockForTrait(self::TRAIT_NAME, [], '', true, true, true, ['at']);
 		$this->Test
-			->staticExpects($this->any())
+			->expects($this->any())
 			->method('at')
 			->will($this->returnCallback(function($input) {
 				return $input;
@@ -46,9 +48,9 @@ class CounterHelperTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function testCountersObjectNamed() {
-		$this->Test = $this->getMock('CounterHelperTest', array('at'));
+		$this->Test = $this->getMockForTrait(self::TRAIT_NAME, [], '', true, true, true, ['at']);
 		$this->Test
-			->staticExpects($this->any())
+			->expects($this->any())
 			->method('at')
 			->will($this->returnCallback(function($input) {
 				return $input;

@@ -1,5 +1,7 @@
 <?php
 
+namespace FriendsOfCake\TestUtilities;
+
 /**
  *
  * Licensed under The MIT License
