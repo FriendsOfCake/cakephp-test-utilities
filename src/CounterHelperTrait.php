@@ -16,7 +16,7 @@ trait CounterHelperTrait {
  *
  * @var array
  */
-	protected $_expectationCounters = array();
+	protected $_expectationCounters = [];
 
 /**
  * Returns a matcher that matches when the method it is evaluated for
