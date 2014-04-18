@@ -2,7 +2,7 @@
     "name": "friendsofcake/cakephp-test-utilities",
     "description": "Package with support traits to ease unit testing.",
     "keywords": ["test", "unit testing", "unittesting", "phpunit"],
-    "homepage": "https://github.com/jippi/cakephp-test-utilities",
+    "homepage": "https://github.com/friendsofcake/cakephp-test-utilities",
     "license": "MIT",
     "authors": [
         {
