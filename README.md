@@ -8,7 +8,7 @@ You should install this package into your project using composer. To do so you c
 
 ``` json
 "require-dev": {
-    "jippi/cakephp-test-utilities": "dev-master"
+    "friendsofcake/cakephp-test-utilities": "dev-master"
 }
 
 ```
