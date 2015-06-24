@@ -1,6 +1,7 @@
 <?php
 
 namespace FriendsOfCake\TestUtilities;
+
 use Exception;
 
 /**
