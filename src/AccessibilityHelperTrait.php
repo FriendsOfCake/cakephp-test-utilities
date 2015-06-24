@@ -3,6 +3,8 @@
 namespace FriendsOfCake\TestUtilities;
 
 use Exception;
+use ReflectionProperty;
+use ReflectionMethod;
 
 /**
  *
@@ -68,7 +70,7 @@ trait AccessibilityHelperTrait {
  *
  * @param string $class
  * @return Object
- * @throws Exception
+ * @throws \Exception
  */
 	public function getReflectionInstance($class) {
 		$class = $this->_getReflectionTargetClass($class);
@@ -148,7 +150,7 @@ trait AccessibilityHelperTrait {
  *
  * @param string $class
  * @return string
- * @throws Exception
+ * @throws \Exception
  */
 	protected function _getReflectionTargetClass($class) {
 		$class = $class ?: $this->defaultReflectionTarget;
@@ -172,7 +174,7 @@ trait AccessibilityHelperTrait {
  * @return \ReflectionMethod
  */
 	protected function _getNewReflectionMethod($class, $method) {
-		return new \ReflectionMethod($class, $method);
+		return new ReflectionMethod($class, $method);
 	}
 
 /**
@@ -183,6 +185,6 @@ trait AccessibilityHelperTrait {
  * @return \ReflectionProperty
  */
 	protected function _getNewReflectionProperty($class, $property) {
-		return new \ReflectionProperty($class, $property);
+		return new ReflectionProperty($class, $property);
 	}
 }
