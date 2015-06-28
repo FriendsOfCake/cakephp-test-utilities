@@ -2,6 +2,10 @@
 
 namespace FriendsOfCake\TestUtilities;
 
+use Exception;
+use ReflectionProperty;
+use ReflectionMethod;
+
 /**
  *
  * Licensed under The MIT License
@@ -66,11 +70,12 @@ trait AccessibilityHelperTrait {
  *
  * @param string $class
  * @return Object
+ * @throws \Exception
  */
 	public function getReflectionInstance($class) {
 		$class = $this->_getReflectionTargetClass($class);
 		if (empty($this->_reflectionInstanceCache[$class])) {
-			throw new \Exception(sprintf('Unable to find instance of %s in the reflection cache. Have you added it using "setReflectionClassInstance"?', $class));
+			throw new Exception(sprintf('Unable to find instance of %s in the reflection cache. Have you added it using "setReflectionClassInstance"?', $class));
 		}
 
 		return $this->_reflectionInstanceCache[$class];
@@ -145,12 +150,13 @@ trait AccessibilityHelperTrait {
  *
  * @param string $class
  * @return string
+ * @throws \Exception
  */
 	protected function _getReflectionTargetClass($class) {
 		$class = $class ?: $this->defaultReflectionTarget;
 
 		if (!$class) {
-			throw new \Exception('Unable to find reflection target; have you set $defaultReflectionTarget or passed in a class name?');
+			throw new Exception('Unable to find reflection target; have you set $defaultReflectionTarget or passed in a class name?');
 		}
 
 		if (!is_object($class)) {
@@ -168,7 +174,7 @@ trait AccessibilityHelperTrait {
  * @return \ReflectionMethod
  */
 	protected function _getNewReflectionMethod($class, $method) {
-		return new \ReflectionMethod($class, $method);
+		return new ReflectionMethod($class, $method);
 	}
 
 /**
@@ -179,6 +185,6 @@ trait AccessibilityHelperTrait {
  * @return \ReflectionProperty
  */
 	protected function _getNewReflectionProperty($class, $property) {
-		return new \ReflectionProperty($class, $property);
+		return new ReflectionProperty($class, $property);
 	}
 }
