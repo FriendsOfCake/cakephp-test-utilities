@@ -2,6 +2,7 @@
 
 namespace FriendsOfCake\TestUtilities;
 
+use Cake\Filesystem\File;
 use Cake\TestSuite\StringCompareTrait;
 use \ReflectionClass;
 
@@ -141,12 +142,13 @@ trait CompareTrait
      */
     protected function indentXml($xml)
     {
+        $header = '';
         $headerPos = strpos($xml, '?>');
         if ($headerPos) {
             $headerPos += 2;
-            $header = substr($xml, 0, $headerPos);
+            $header = trim(substr($xml, 0, $headerPos)) . "\n";
             $xml = substr($xml, $headerPos);
         }
-        return trim($header) . "\n" . $this->indentHtml($xml);
+        return $header . $this->indentHtml($xml);
     }
 }

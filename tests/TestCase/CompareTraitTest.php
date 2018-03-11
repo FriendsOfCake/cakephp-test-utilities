@@ -25,7 +25,7 @@ class CompareHelperTest extends TestCase
     public function testAssertHtmlSameAsFile($name)
     {
         $input = file_get_contents($name);
-        $this->assertSameAsFile(basename($name), $input);
+        $this->assertHtmlSameAsFile(basename($name), $input);
     }
 
     /**
@@ -37,7 +37,7 @@ class CompareHelperTest extends TestCase
     public function testAssertJsonSameAsFile($name)
     {
         $input = file_get_contents($name);
-        $this->assertSameAsFile(basename($name), $input);
+        $this->assertJsonSameAsFile(basename($name), $input);
     }
 
     /**
@@ -49,7 +49,7 @@ class CompareHelperTest extends TestCase
     public function testAssertXmlSameAsFile($name)
     {
         $input = file_get_contents($name);
-        $this->assertSameAsFile(basename($name), $input);
+        $this->assertXmlSameAsFile(basename($name), $input);
     }
 
     public function htmlInputFilesProvider()
