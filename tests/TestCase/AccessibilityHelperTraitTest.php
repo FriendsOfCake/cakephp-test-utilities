@@ -1,11 +1,13 @@
 <?php
 
-namespace FriendsOfCake\TestUtilities\Test;
+namespace FriendsOfCake\TestUtilities\Test\TestCase;
+
+use Cake\TestSuite\TestCase;
 
 /**
  * @covers FriendsOfCake\TestUtilities\AccessibilityHelperTrait
  */
-class AccessibilityHelperTraitTest extends \PHPUnit_Framework_TestCase
+class AccessibilityHelperTraitTest extends TestCase
 {
 
     use \FriendsOfCake\TestUtilities\AccessibilityHelperTrait;

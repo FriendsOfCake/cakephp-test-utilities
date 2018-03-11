@@ -1,11 +1,13 @@
 <?php
 
-namespace FriendsOfCake\TestUtilities\Test;
+namespace FriendsOfCake\TestUtilities\Test\TestCase;
+
+use Cake\TestSuite\TestCase;
 
 /**
  * @covers FriendsOfCake\TestUtilities\CounterHelperTrait
  */
-class CounterHelperTest extends \PHPUnit_Framework_TestCase
+class CounterHelperTest extends TestCase
 {
 
     use \FriendsOfCake\TestUtilities\CounterHelperTrait;
