@@ -36,7 +36,7 @@ class CompareHelperTest extends TestCase
      */
     public function testAssertJsonSameAsFile($name)
     {
-        $input = file_get_contents($name);
+        $input = json_decode(file_get_contents($name), true);
         $this->assertJsonSameAsFile(basename($name), $input);
     }
 
