@@ -147,7 +147,7 @@ trait CompareTrait
         if ($headerPos) {
             $headerPos += 2;
             $header = trim(substr($xml, 0, $headerPos)) . "\n";
-            $xml = substr($xml, $headerPos);
+            $xml = trim(substr($xml, $headerPos));
         }
         return $header . $this->indentHtml($xml);
     }
