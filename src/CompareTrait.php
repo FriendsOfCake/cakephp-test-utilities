@@ -5,6 +5,12 @@ namespace FriendsOfCake\TestUtilities;
 use Cake\TestSuite\StringCompareTrait;
 use \ReflectionClass;
 
+/**
+ * Assert methods, comparing to files for:
+ *  HTML
+ *  JSON
+ *  XML
+ */
 trait CompareTrait
 {
     /**
@@ -103,11 +109,11 @@ trait CompareTrait
             $indent = str_repeat('  ', $counter);
 
             if ($isTag) {
-				$match[1] = preg_replace(
-					'@ ([\w-]+="[^"]+")@',
-					"\n  $indent\\1",
-				   $match[1]
-				);
+                $match[1] = preg_replace(
+                    '@ ([\w-]+="[^"]+")@',
+                    "\n  $indent\\1",
+                   $match[1]
+                );
                 $isClosingTag = (bool)$match[2];
                 $isSelfClosingTag = (bool)$match[3];
 
