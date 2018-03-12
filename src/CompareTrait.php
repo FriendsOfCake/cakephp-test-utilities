@@ -111,7 +111,7 @@ trait CompareTrait
 
             if ($isTag) {
                 $match[1] = preg_replace(
-                    '@ ([\w-]+="[^"]+")@',
+                    '@ ([\w-]+="[^"]*")@',
                     "\n  $indent\\1",
                    $match[1]
                 );
