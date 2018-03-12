@@ -28,7 +28,7 @@ trait CounterHelperTrait
  * @param mixed $name string or object
  * @return \PHPUnit_Framework_MockObject_Matcher_InvokedAtIndex
  */
-    public function next($name = '')
+    public function nextCounter($name = '')
     {
         if (is_object($name)) {
             $name = get_class($name);

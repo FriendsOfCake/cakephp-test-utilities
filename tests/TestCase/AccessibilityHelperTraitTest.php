@@ -107,7 +107,9 @@ class AccessibilityHelperTraitTest extends TestCase
         $this->setReflectionClassInstance($this->_trait);
         $this->defaultReflectionTarget = $this->_trait;
 
-        $method = $this->getMock('\ReflectionMethod', [], [], '', false);
+        $method = $this->getMockBuilder('\ReflectionMethod')
+            ->disableOriginalConstructor()
+            ->getMock();
 
         $this->_trait->expects($this->once())
             ->method('_getReflectionTargetClass')
@@ -155,7 +157,9 @@ class AccessibilityHelperTraitTest extends TestCase
         $this->setReflectionClassInstance($this->_trait);
         $this->defaultReflectionTarget = $this->_trait;
 
-        $method = $this->getMock('\ReflectionMethod', [], [], '', false);
+        $method = $this->getMockBuilder('\ReflectionMethod')
+            ->disableOriginalConstructor()
+            ->getMock();
         $cache = ['FocClass_getFOC' => $method];
         $this->setProtectedProperty('_reflectionMethodCache', $cache);
 
@@ -198,7 +202,9 @@ class AccessibilityHelperTraitTest extends TestCase
             '_getReflectionPropertyInstance', 'getReflectionInstance'
         ]);
 
-        $property = $this->getMock('\ReflectionProperty', [], [], '', false);
+        $property = $this->getMockBuilder('\ReflectionProperty')
+            ->disableOriginalConstructor()
+            ->getMock();
 
         $this->_trait->expects($this->once())
             ->method('_getReflectionPropertyInstance')
@@ -229,7 +235,9 @@ class AccessibilityHelperTraitTest extends TestCase
             '_getReflectionPropertyInstance', 'getReflectionInstance'
         ]);
 
-        $property = $this->getMock('\ReflectionProperty', [], [], '', false);
+        $property = $this->getMockBuilder('\ReflectionProperty')
+            ->disableOriginalConstructor()
+            ->getMock();
 
         $this->_trait->expects($this->once())
             ->method('_getReflectionPropertyInstance')
@@ -264,7 +272,9 @@ class AccessibilityHelperTraitTest extends TestCase
         $this->setReflectionClassInstance($this->_trait);
         $this->defaultReflectionTarget = $this->_trait;
 
-        $property = $this->getMock('\ReflectionProperty', [], [], '', false);
+        $property = $this->getMockBuilder('\ReflectionProperty')
+            ->disableOriginalConstructor()
+            ->getMock();
 
         $this->_trait->expects($this->once())
             ->method('_getReflectionTargetClass')
@@ -302,7 +312,9 @@ class AccessibilityHelperTraitTest extends TestCase
         $this->setReflectionClassInstance($this->_trait);
         $this->defaultReflectionTarget = $this->_trait;
 
-        $property = $this->getMock('\ReflectionProperty', [], [], '', false);
+        $property = $this->getMockBuilder('\ReflectionProperty')
+            ->disableOriginalConstructor()
+            ->getMock();
         $cache = ['FocTargetClass__focValue' => $property];
 
         $this->setProtectedProperty('_reflectionPropertyCache', $cache);
