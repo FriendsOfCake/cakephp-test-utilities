@@ -3,8 +3,8 @@
 namespace FriendsOfCake\TestUtilities;
 
 use Exception;
-use ReflectionProperty;
 use ReflectionMethod;
+use ReflectionProperty;
 
 /**
  * Licensed under The MIT License
@@ -57,7 +57,8 @@ trait AccessibilityHelperTrait
     /**
      * Map an instance of an object to its class name.
      *
-     * @param  object $instance
+     * @param  object $instance an instance of a class
+     * @param  string $class the key used in the reflection instance class
      * @return void
      */
     public function setReflectionClassInstance($instance, $class = null)
@@ -69,8 +70,8 @@ trait AccessibilityHelperTrait
     /**
      * Get working instance of "$class".
      *
-     * @param  string $class
-     * @return Object
+     * @param  string $class the class name
+     * @return object
      * @throws \Exception
      */
     public function getReflectionInstance($class)
@@ -86,7 +87,7 @@ trait AccessibilityHelperTrait
     /**
      * Helper method to call a protected method.
      *
-     * @param  string $method
+     * @param  string $method the method name
      * @param  array  $args   Argument list to call $method with (call_user_func_array style)
      * @param  string $class  Target reflection class
      * @return mixed
@@ -107,7 +108,7 @@ trait AccessibilityHelperTrait
     /**
      * Helper method to get the value of a protected property.
      *
-     * @param  string $property
+     * @param  string $property the property to access/manipulate
      * @param  string $class    Target reflection class
      * @return mixed
      */
@@ -121,8 +122,8 @@ trait AccessibilityHelperTrait
     /**
      * Helper method to set the value of a protected property.
      *
-     * @param  string $property
-     * @param  mixed  $value
+     * @param  string $property the property to change
+     * @param  mixed  $value the value to set the property to
      * @param  string $class    Target reflection class
      * @return mixed
      */
@@ -136,8 +137,8 @@ trait AccessibilityHelperTrait
     /**
      * Get a reflection property object.
      *
-     * @param  string $property
-     * @param  string $class
+     * @param  string $property the property to access/manipulate
+     * @param  string $class the class name
      * @return \ReflectionProperty
      */
     protected function _getReflectionPropertyInstance($property, $class)
@@ -156,7 +157,7 @@ trait AccessibilityHelperTrait
     /**
      * Get the reflection class name.
      *
-     * @param  string $class
+     * @param  string $class the class name
      * @return string
      * @throws \Exception
      */
@@ -178,8 +179,8 @@ trait AccessibilityHelperTrait
     /**
      * Gets a new ReflectionMethod instance. Extracted for testing purposes.
      *
-     * @param  mixed  $class
-     * @param  string $method
+     * @param  string $class the class name
+     * @param  string $method the method name
      * @return \ReflectionMethod
      */
     protected function _getNewReflectionMethod($class, $method)
@@ -190,8 +191,8 @@ trait AccessibilityHelperTrait
     /**
      * Gets a new ReflectionProperty instance. Extracted for testing purposes.
      *
-     * @param  mixed  $class
-     * @param  string $property
+     * @param  string $class the class name
+     * @param  string $property the property to access/manipulate
      * @return \ReflectionProperty
      */
     protected function _getNewReflectionProperty($class, $property)
