@@ -105,6 +105,10 @@ public function testExample()
 }
 ```
 
+See [Cake's docs](https://book.cakephp.org/3.0/en/development/testing.html#comparing-test-results-to-a-file)
+for more details on usage of `assertSameAsFile` on which these methods are
+based.
+
 ### CounterHelperTrait
 
 This trait helps with defining expectations that are order specific.
