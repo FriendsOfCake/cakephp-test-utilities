@@ -151,12 +151,12 @@ track the indices for you, so you can easily switch calls or add some later,
 without having to change them. Example:
 
 ``` php
-$mock->expects($this->next()) // = $this->at(0)
+$mock->expects($this->nextCounter()) // = $this->at(0)
     ->method('myMethod')
     ->with('myParameter')
     ->will($this->returnValue('myFirstReturnValue'));
 
-$mock->expects($this->next()) // = $this->at(1)
+$mock->expects($this->nextCounter()) // = $this->at(1)
     ->method('myMethod')
     ->with('myParameter')
     ->will($this->returnValue('mySecondReturnValue'));
@@ -169,22 +169,22 @@ counters. For this to work you need to identify which counter you want to use
 by passing an object (or a string):
 
 ``` php
-$mock1->expects($this->next($mock1)) // = $this->at(0)
+$mock1->expects($this->nextCounter($mock1)) // = $this->at(0)
     ->method('myMethod')
     ->with('myParameter')
     ->will($this->returnValue('myFirstReturnValue'));
 
-$mock2->expects($this->next($mock2)) // = $this->at(0)
+$mock2->expects($this->nextCounter($mock2)) // = $this->at(0)
     ->method('myMethod')
     ->with('myParameter')
     ->will($this->returnValue('myFirstReturnValue'));
 
-$mock1->expects($this->next($mock1)) // = $this->at(1)
+$mock1->expects($this->nextCounter($mock1)) // = $this->at(1)
     ->method('myMethod')
     ->with('myParameter')
     ->will($this->returnValue('mySecondReturnValue'));
 
-$mock2->expects($this->next($mock2)) // = $this->at(1)
+$mock2->expects($this->nextCounter($mock2)) // = $this->at(1)
     ->method('myMethod')
     ->with('myParameter')
     ->will($this->returnValue('mySecondReturnValue'));
