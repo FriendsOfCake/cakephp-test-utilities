@@ -76,17 +76,23 @@ This trait helps with comparing test results as string
 
 #### Setup
 
-Add the trait at the top of your test case:
+Add the trait at the top of your test case and define the `_compareBasePath`
+property so the trait knows where to look for comparison files:
 
 ``` php
+...
 use \FriendsOfCake\TestUtilities\CompareTrait;
-```
 
-That adds the following new assert methods:
+class MyTest extends TestCase
+{
+    use CompareTrait;
 
- * `assertHtmlSameAsFile`
- * `assertJsonSameAsFile`
- * `assertXmlSameAsFile`
+    public function setUp()
+    {
+        parent::setUp();
+        $this->_compareBasePath = 'comparisons/MyTest/';
+    }
+}
 
 #### Usage
 
