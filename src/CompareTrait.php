@@ -22,7 +22,7 @@ trait CompareTrait
     /**
      * Asert html is the same as a comparison file
      *
-     * @param string $path partial path to test comparison file
+     * @param string $path   partial path to test comparison file
      * @param string $result test result as a string
      */
     public function assertHtmlSameAsFile($path, $result)
@@ -36,8 +36,8 @@ trait CompareTrait
      *
      * Compares the array representation
      *
-     * @param string $path partial path to test comparison file
-     * @param array $result test result as an array
+     * @param string $path   partial path to test comparison file
+     * @param array  $result test result as an array
      */
     public function assertJsonSameAsFile($path, $result)
     {
@@ -63,7 +63,7 @@ trait CompareTrait
     /**
      * Asert xml is the same as a comparison file
      *
-     * @param string $path partial path to test comparison file
+     * @param string $path   partial path to test comparison file
      * @param string $result test result as a string
      */
     public function assertXmlSameAsFile($path, $result)
@@ -96,7 +96,7 @@ trait CompareTrait
      * Indent tags
      * Indent atttributes one level more than the tag
      *
-     * @param string $html
+     * @param  string $html
      * @return string
      */
     protected function indentHtml($html)
@@ -113,7 +113,7 @@ trait CompareTrait
                 $match[1] = preg_replace(
                     '@ ([\w-]+="[^"]*")@',
                     "\n  $indent\\1",
-                   $match[1]
+                    $match[1]
                 );
                 $isClosingTag = (bool)$match[2];
                 $isSelfClosingTag = (bool)$match[3];
@@ -137,7 +137,7 @@ trait CompareTrait
      * However stash the xml header so there isn't an extra level of unwanted
      * indentation
      *
-     * @param mixed $xml
+     * @param  mixed $xml
      * @return string
      */
     protected function indentXml($xml)
