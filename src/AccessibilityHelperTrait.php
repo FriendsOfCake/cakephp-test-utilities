@@ -57,7 +57,7 @@ trait AccessibilityHelperTrait
     /**
      * Map an instance of an object to its class name.
      *
-     * @param  Object $instance
+     * @param  object $instance
      * @return void
      */
     public function setReflectionClassInstance($instance, $class = null)
@@ -114,6 +114,7 @@ trait AccessibilityHelperTrait
     public function getProtectedProperty($property, $class = null)
     {
         $Instance = $this->_getReflectionPropertyInstance($property, $class);
+
         return $Instance->getValue($this->getReflectionInstance($class));
     }
 
@@ -128,6 +129,7 @@ trait AccessibilityHelperTrait
     public function setProtectedProperty($property, $value, $class = null)
     {
         $Instance = $this->_getReflectionPropertyInstance($property, $class);
+
         return $Instance->setValue($this->getReflectionInstance($class), $value);
     }
 

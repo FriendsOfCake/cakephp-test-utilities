@@ -37,6 +37,7 @@ trait CounterHelperTrait
         } else {
             $this->_expectationCounters[$name] += 1;
         }
+
         return $this->at($this->_expectationCounters[$name]);
     }
 }

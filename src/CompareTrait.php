@@ -128,6 +128,7 @@ trait CompareTrait
 
             return $indent . rtrim($match[1]) . "\n";
         };
+
         return ltrim(preg_replace_callback('@(<(/?)[^>]+?(/?)>|[^<]+)(?:\s*)@', $callback, $html));
     }
 
@@ -149,6 +150,7 @@ trait CompareTrait
             $header = trim(substr($xml, 0, $headerPos)) . "\n";
             $xml = trim(substr($xml, $headerPos));
         }
+
         return $header . $this->indentHtml($xml);
     }
 }
