@@ -70,6 +70,41 @@ $actual = $this->callProtectedMethod('_myMethod', $parameters, $object);
 $this->assertEquals($expected, $actual);
 ```
 
+### CompareTrait
+
+This trait helps with comparing test results as string
+
+#### Setup
+
+Add the trait at the top of your test case:
+
+``` php
+use \FriendsOfCake\TestUtilities\CompareTrait;
+```
+
+That adds the following new assert methods:
+
+ * `assertHtmlSameAsFile`
+ * `assertJsonSameAsFile`
+ * `assertXmlSameAsFile`
+
+#### Usage
+
+Each of the methods acts similar to the core `assertSameAsFile` method:
+
+```
+public function testExample()
+{
+    $html = '<p>Some html</p>';
+    $xml = '<?xml version="1.0" encoding="UTF-8"?><thing>...</thing>';
+    $json = ['actually' => 'this is an array'];
+
+    $this->assertHtmlSameAsFile('some.html', $html);
+    $this->assertXmlSameAsFile('some.xml', $xml);
+    $this->assertJsonSameAsFile('some.json', $json);
+}
+```
+
 ### CounterHelperTrait
 
 This trait helps with defining expectations that are order specific.
