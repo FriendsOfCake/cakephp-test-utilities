@@ -24,6 +24,7 @@ trait CompareTrait
      *
      * @param string $path   partial path to test comparison file
      * @param string $result test result as a string
+     * @return void
      */
     public function assertHtmlSameAsFile($path, $result)
     {
@@ -38,6 +39,7 @@ trait CompareTrait
      *
      * @param string $path   partial path to test comparison file
      * @param array  $result test result as an array
+     * @return void
      */
     public function assertJsonSameAsFile($path, $result)
     {
@@ -65,6 +67,7 @@ trait CompareTrait
      *
      * @param string $path   partial path to test comparison file
      * @param string $result test result as a string
+     * @return void
      */
     public function assertXmlSameAsFile($path, $result)
     {
@@ -74,6 +77,8 @@ trait CompareTrait
 
     /**
      * If compare base path has not been set, use the test file as the base
+     *
+     * @return void
      */
     protected function initComparePath()
     {
@@ -96,7 +101,7 @@ trait CompareTrait
      * Indent tags
      * Indent atttributes one level more than the tag
      *
-     * @param  string $html
+     * @param  string $html the html string
      * @return string
      */
     protected function indentHtml($html)
@@ -138,7 +143,7 @@ trait CompareTrait
      * However stash the xml header so there isn't an extra level of unwanted
      * indentation
      *
-     * @param  mixed $xml
+     * @param  string $xml the xml string
      * @return string
      */
     protected function indentXml($xml)
