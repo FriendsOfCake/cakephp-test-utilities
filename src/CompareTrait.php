@@ -53,7 +53,7 @@ trait CompareTrait
             $indented = json_encode(
                 $result,
                 JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE
-            );
+            ) . "\n";
             $file = new File($path, true);
             $file->write($indented);
         }
