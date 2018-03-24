@@ -1,11 +1,14 @@
 <?php
 
-namespace FriendsOfCake\TestUtilities\Test;
+namespace FriendsOfCake\TestUtilities\Test\TestCase;
+
+use Cake\TestSuite\TestCase;
+use PHPUnit\Framework\MockObject\Matcher\InvokedAtIndex;
 
 /**
  * @covers FriendsOfCake\TestUtilities\CounterHelperTrait
  */
-class CounterHelperTest extends \PHPUnit_Framework_TestCase
+class CounterHelperTest extends TestCase
 {
 
     use \FriendsOfCake\TestUtilities\CounterHelperTrait;
@@ -14,14 +17,14 @@ class CounterHelperTest extends \PHPUnit_Framework_TestCase
 /**
  * testNext
  *
- * Tests whether next() returns the right instance.
+ * Tests whether nextCounter() returns the right instance.
  *
  * @return void
  */
-    public function testNext()
+    public function testNextCounter()
     {
-        $next = $this->next();
-        $this->assertInstanceOf('PHPUnit_Framework_MockObject_Matcher_InvokedAtIndex', $next);
+        $next = $this->nextCounter();
+        $this->assertInstanceOf(InvokedAtIndex::class, $next);
     }
 
 /**
@@ -41,12 +44,12 @@ class CounterHelperTest extends \PHPUnit_Framework_TestCase
                 return $input;
             }));
 
-        $this->assertSame(0, $this->Test->next());
-        $this->assertSame(1, $this->Test->next());
-        $this->assertSame(2, $this->Test->next());
-        $this->assertSame(3, $this->Test->next());
-        $this->assertSame(4, $this->Test->next());
-        $this->assertSame(5, $this->Test->next());
+        $this->assertSame(0, $this->Test->nextCounter());
+        $this->assertSame(1, $this->Test->nextCounter());
+        $this->assertSame(2, $this->Test->nextCounter());
+        $this->assertSame(3, $this->Test->nextCounter());
+        $this->assertSame(4, $this->Test->nextCounter());
+        $this->assertSame(5, $this->Test->nextCounter());
     }
 
 /**
@@ -66,13 +69,13 @@ class CounterHelperTest extends \PHPUnit_Framework_TestCase
                 return $input;
             }));
 
-        $this->assertSame(0, $this->Test->next());
-        $this->assertSame(0, $this->Test->next('Foo'));
-        $this->assertSame(0, $this->Test->next('Bar'));
-        $this->assertSame(1, $this->Test->next('Foo'));
-        $this->assertSame(1, $this->Test->next());
-        $this->assertSame(2, $this->Test->next());
-        $this->assertSame(3, $this->Test->next());
+        $this->assertSame(0, $this->Test->nextCounter());
+        $this->assertSame(0, $this->Test->nextCounter('Foo'));
+        $this->assertSame(0, $this->Test->nextCounter('Bar'));
+        $this->assertSame(1, $this->Test->nextCounter('Foo'));
+        $this->assertSame(1, $this->Test->nextCounter());
+        $this->assertSame(2, $this->Test->nextCounter());
+        $this->assertSame(3, $this->Test->nextCounter());
     }
 
 /**
@@ -92,13 +95,13 @@ class CounterHelperTest extends \PHPUnit_Framework_TestCase
                 return $input;
             }));
 
-        $this->assertSame(0, $this->Test->next());
-        $this->assertSame(0, $this->Test->next($this->Test));
-        $this->assertSame(0, $this->Test->next($this));
-        $this->assertSame(1, $this->Test->next($this->Test));
-        $this->assertSame(1, $this->Test->next());
-        $this->assertSame(2, $this->Test->next());
-        $this->assertSame(3, $this->Test->next());
+        $this->assertSame(0, $this->Test->nextCounter());
+        $this->assertSame(0, $this->Test->nextCounter($this->Test));
+        $this->assertSame(0, $this->Test->nextCounter($this));
+        $this->assertSame(1, $this->Test->nextCounter($this->Test));
+        $this->assertSame(1, $this->Test->nextCounter());
+        $this->assertSame(2, $this->Test->nextCounter());
+        $this->assertSame(3, $this->Test->nextCounter());
     }
 
 /**
@@ -110,7 +113,7 @@ class CounterHelperTest extends \PHPUnit_Framework_TestCase
  */
     public function testCountersDontPersist()
     {
-        $next = $this->next();
+        $next = $this->nextCounter();
         $this->assertSame('invoked at sequence index 0', $next->toString());
     }
 
@@ -124,7 +127,7 @@ class CounterHelperTest extends \PHPUnit_Framework_TestCase
  */
     public function testCountersDontPersist2()
     {
-        $next = $this->next();
+        $next = $this->nextCounter();
         $this->assertSame('invoked at sequence index 0', $next->toString());
     }
 }
