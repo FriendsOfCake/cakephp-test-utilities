@@ -15,38 +15,38 @@ use ReflectionMethod;
 trait AccessibilityHelperTrait
 {
     /**
- * Default target to use for reflection.
- *
- * @var Object|string
- */
+     * Default target to use for reflection.
+     *
+     * @var Object|string
+     */
     public $defaultReflectionTarget = null;
 
     /**
- * List of Reflection properties made public.
- *
- * @var array
- */
+     * List of Reflection properties made public.
+     *
+     * @var array
+     */
     protected $_reflectionPropertyCache = [];
 
     /**
- * List of Reflection methods made public.
- *
- * @var array
- */
+     * List of Reflection methods made public.
+     *
+     * @var array
+     */
     protected $_reflectionMethodCache = [];
 
     /**
- * List of class names <=> instances used for invocation.
- *
- * @var array
- */
+     * List of class names <=> instances used for invocation.
+     *
+     * @var array
+     */
     protected $_reflectionInstanceCache = [];
 
     /**
- * Reset the internal reflection caches.
- *
- * @return void
- */
+     * Reset the internal reflection caches.
+     *
+     * @return void
+     */
     public function resetReflectionCache()
     {
         $this->_reflectionPropertyCache = [];
@@ -55,11 +55,11 @@ trait AccessibilityHelperTrait
     }
 
     /**
- * Map an instance of an object to its class name.
- *
- * @param  Object $instance
- * @return void
- */
+     * Map an instance of an object to its class name.
+     *
+     * @param  Object $instance
+     * @return void
+     */
     public function setReflectionClassInstance($instance, $class = null)
     {
         $class = $class ?: get_class($instance);
@@ -67,12 +67,12 @@ trait AccessibilityHelperTrait
     }
 
     /**
- * Get working instance of "$class".
- *
- * @param  string $class
- * @return Object
- * @throws \Exception
- */
+     * Get working instance of "$class".
+     *
+     * @param  string $class
+     * @return Object
+     * @throws \Exception
+     */
     public function getReflectionInstance($class)
     {
         $class = $this->_getReflectionTargetClass($class);
@@ -84,13 +84,13 @@ trait AccessibilityHelperTrait
     }
 
     /**
- * Helper method to call a protected method.
- *
- * @param  string $method
- * @param  array  $args   Argument list to call $method with (call_user_func_array style)
- * @param  string $class  Target reflection class
- * @return mixed
- */
+     * Helper method to call a protected method.
+     *
+     * @param  string $method
+     * @param  array  $args   Argument list to call $method with (call_user_func_array style)
+     * @param  string $class  Target reflection class
+     * @return mixed
+     */
     public function callProtectedMethod($method, $args = [], $class = null)
     {
         $class = $this->_getReflectionTargetClass($class);
@@ -105,12 +105,12 @@ trait AccessibilityHelperTrait
     }
 
     /**
- * Helper method to get the value of a protected property.
- *
- * @param  string $property
- * @param  string $class    Target reflection class
- * @return mixed
- */
+     * Helper method to get the value of a protected property.
+     *
+     * @param  string $property
+     * @param  string $class    Target reflection class
+     * @return mixed
+     */
     public function getProtectedProperty($property, $class = null)
     {
         $Instance = $this->_getReflectionPropertyInstance($property, $class);
@@ -118,13 +118,13 @@ trait AccessibilityHelperTrait
     }
 
     /**
- * Helper method to set the value of a protected property.
- *
- * @param  string $property
- * @param  mixed  $value
- * @param  string $class    Target reflection class
- * @return mixed
- */
+     * Helper method to set the value of a protected property.
+     *
+     * @param  string $property
+     * @param  mixed  $value
+     * @param  string $class    Target reflection class
+     * @return mixed
+     */
     public function setProtectedProperty($property, $value, $class = null)
     {
         $Instance = $this->_getReflectionPropertyInstance($property, $class);
@@ -132,12 +132,12 @@ trait AccessibilityHelperTrait
     }
 
     /**
- * Get a reflection property object.
- *
- * @param  string $property
- * @param  string $class
- * @return \ReflectionProperty
- */
+     * Get a reflection property object.
+     *
+     * @param  string $property
+     * @param  string $class
+     * @return \ReflectionProperty
+     */
     protected function _getReflectionPropertyInstance($property, $class)
     {
         $class = $this->_getReflectionTargetClass($class);
@@ -152,12 +152,12 @@ trait AccessibilityHelperTrait
     }
 
     /**
- * Get the reflection class name.
- *
- * @param  string $class
- * @return string
- * @throws \Exception
- */
+     * Get the reflection class name.
+     *
+     * @param  string $class
+     * @return string
+     * @throws \Exception
+     */
     protected function _getReflectionTargetClass($class)
     {
         $class = $class ?: $this->defaultReflectionTarget;
@@ -174,24 +174,24 @@ trait AccessibilityHelperTrait
     }
 
     /**
- * Gets a new ReflectionMethod instance. Extracted for testing purposes.
- *
- * @param  mixed  $class
- * @param  string $method
- * @return \ReflectionMethod
- */
+     * Gets a new ReflectionMethod instance. Extracted for testing purposes.
+     *
+     * @param  mixed  $class
+     * @param  string $method
+     * @return \ReflectionMethod
+     */
     protected function _getNewReflectionMethod($class, $method)
     {
         return new ReflectionMethod($class, $method);
     }
 
     /**
- * Gets a new ReflectionProperty instance. Extracted for testing purposes.
- *
- * @param  mixed  $class
- * @param  string $property
- * @return \ReflectionProperty
- */
+     * Gets a new ReflectionProperty instance. Extracted for testing purposes.
+     *
+     * @param  mixed  $class
+     * @param  string $property
+     * @return \ReflectionProperty
+     */
     protected function _getNewReflectionProperty($class, $property)
     {
         return new ReflectionProperty($class, $property);
