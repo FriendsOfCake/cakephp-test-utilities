@@ -93,6 +93,7 @@ class MyTest extends TestCase
         $this->_compareBasePath = 'comparisons/MyTest/';
     }
 }
+```
 
 #### Usage
 
