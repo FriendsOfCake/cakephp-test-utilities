@@ -5,14 +5,9 @@ This package contains support traits to ease unit testing.
 ## Installing via composer
 
 You should install this package into your project using composer. To do so you
-can add the following to your composer.json file:
+can run the following command:
 
-``` json
-"require-dev": {
-    "friendsofcake/cakephp-test-utilities": "dev-master"
-}
-
-```
+```composer require friendsofcake/cakephp-test-utilities```
 
 ## Traits
 
