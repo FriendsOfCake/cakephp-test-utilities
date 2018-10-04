@@ -7,7 +7,9 @@ This package contains support traits to ease unit testing.
 You should install this package into your project using composer. To do so you
 can run the following command:
 
-```composer require friendsofcake/cakephp-test-utilities```
+```bash
+composer require friendsofcake/cakephp-test-utilities
+```
 
 ## Traits
 
