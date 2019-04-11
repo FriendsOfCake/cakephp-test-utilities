@@ -96,7 +96,7 @@ class MyTest extends TestCase
 
 Each of the methods acts similar to the core `assertSameAsFile` method:
 
-```
+```php
 public function testExample()
 {
     $html = '<p>Some html</p>';
