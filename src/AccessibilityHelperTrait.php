@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace FriendsOfCake\TestUtilities;
 
@@ -78,7 +79,11 @@ trait AccessibilityHelperTrait
     {
         $class = $this->_getReflectionTargetClass($class);
         if (empty($this->_reflectionInstanceCache[$class])) {
-            throw new Exception(sprintf('Unable to find instance of %s in the reflection cache. Have you added it using "setReflectionClassInstance"?', $class));
+            throw new Exception(sprintf(
+                'Unable to find instance of %s in the reflection cache. '
+                . 'Have you added it using "setReflectionClassInstance"?',
+                $class
+            ));
         }
 
         return $this->_reflectionInstanceCache[$class];
@@ -166,7 +171,10 @@ trait AccessibilityHelperTrait
         $class = $class ?: $this->defaultReflectionTarget;
 
         if (!$class) {
-            throw new Exception('Unable to find reflection target; have you set $defaultReflectionTarget or passed in a class name?');
+            throw new Exception(
+                'Unable to find reflection target. '
+                . 'Have you set $defaultReflectionTarget or passed in a class name?'
+            );
         }
 
         if (!is_object($class)) {

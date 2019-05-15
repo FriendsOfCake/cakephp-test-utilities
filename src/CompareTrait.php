@@ -1,10 +1,11 @@
 <?php
+declare(strict_types=1);
 
 namespace FriendsOfCake\TestUtilities;
 
 use Cake\Filesystem\File;
 use Cake\TestSuite\StringCompareTrait;
-use \ReflectionClass;
+use ReflectionClass;
 
 /**
  * Assert methods, comparing to files for:

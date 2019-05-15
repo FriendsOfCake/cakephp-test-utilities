@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace FriendsOfCake\TestUtilities;
 
@@ -10,7 +11,6 @@ namespace FriendsOfCake\TestUtilities;
  */
 trait CounterHelperTrait
 {
-
     /**
      * List of counters used by this test case
      *

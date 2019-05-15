@@ -1,12 +1,13 @@
 <?php
+declare(strict_types=1);
 
 namespace FriendsOfCake\TestUtilities\Test\TestCase;
 
 use Cake\TestSuite\TestCase;
 use FriendsOfCake\TestUtilities\CompareTrait;
-use \ReflectionClass;
+use ReflectionClass;
 
-class CompareHelperTest extends TestCase
+class CompareTraitTest extends TestCase
 {
     use CompareTrait;
 
@@ -73,7 +74,7 @@ class CompareHelperTest extends TestCase
         $path = dirname($reflector->getFileName()) . '/' . $format . '/';
 
         $return = [];
-        foreach(glob("{$path}*.$format") as $file){
+        foreach (glob("{$path}*.$format") as $file) {
             $return[str_replace($path, '', $file)] = [$file];
         }
 
