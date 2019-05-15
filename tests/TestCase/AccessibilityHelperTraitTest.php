@@ -23,7 +23,7 @@ class AccessibilityHelperTraitTest extends TestCase
 /**
  * SetUp callback. Generates a new mock object for every test method.
  */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->_trait = $this->getMockForTrait(self::TRAIT_NAME);
@@ -86,11 +86,11 @@ class AccessibilityHelperTraitTest extends TestCase
  * Tests AccessibilityHelperTrait::setReflectionClassInstance().
  *
  * Get missing objects from the cache.
- *
- * @expectedException Exception
  */
     public function testGetReflectionInstanceMissing()
     {
+        $this->expectException(\Exception::class);
+
         $this->_trait->getReflectionInstance('MyTestInstance');
     }
 
@@ -372,11 +372,11 @@ class AccessibilityHelperTraitTest extends TestCase
  * Tests AccessibilityHelperTrait::_getReflectionTargetClass().
  *
  * With invalid values to trigger the exception.
- *
- * @expectedException \Exception
  */
     public function testProtectedGetReflectionTargetClassInvalidValues()
     {
+        $this->expectException(\Exception::class);
+
         $this->callProtectedMethod('_getReflectionTargetClass', [null]);
     }
 }

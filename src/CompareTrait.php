@@ -91,7 +91,7 @@ trait CompareTrait
             'TestCase',
             'comparisons',
             substr($reflector->getFileName(), 0, -8)
-        ) . DS;
+        ) . DIRECTORY_SEPARATOR;
     }
 
     /**
