@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace FriendsOfCake\TestUtilities;
 
-use Cake\Filesystem\File;
 use Cake\TestSuite\StringCompareTrait;
 use ReflectionClass;
 
