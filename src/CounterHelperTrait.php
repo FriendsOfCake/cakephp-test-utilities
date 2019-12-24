@@ -1,6 +1,9 @@
 <?php
+declare(strict_types=1);
 
 namespace FriendsOfCake\TestUtilities;
+
+use PHPUnit\Framework\MockObject\Rule\InvokedAtIndex;
 
 /**
  * Licensed under The MIT License
@@ -10,7 +13,6 @@ namespace FriendsOfCake\TestUtilities;
  */
 trait CounterHelperTrait
 {
-
     /**
      * List of counters used by this test case
      *
@@ -25,9 +27,9 @@ trait CounterHelperTrait
      * Permits using multiple named counters
      *
      * @param  mixed $name string or object
-     * @return \PHPUnit_Framework_MockObject_Matcher_InvokedAtIndex
+     * @return \PHPUnit\Framework\MockObject\Rule\InvokedAtIndex
      */
-    public function nextCounter($name = '')
+    public function nextCounter($name = ''): InvokedAtIndex
     {
         if (is_object($name)) {
             $name = get_class($name);

@@ -1,10 +1,10 @@
 <?php
+declare(strict_types=1);
 
 namespace FriendsOfCake\TestUtilities;
 
-use Cake\Filesystem\File;
 use Cake\TestSuite\StringCompareTrait;
-use \ReflectionClass;
+use ReflectionClass;
 
 /**
  * Assert methods, comparing to files for:
@@ -26,7 +26,7 @@ trait CompareTrait
      * @param string $result test result as a string
      * @return void
      */
-    public function assertHtmlSameAsFile($path, $result)
+    public function assertHtmlSameAsFile(string $path, string $result): void
     {
         $indented = $this->indentHtml($result);
         $this->assertSameAsFile($path, $indented);
@@ -38,13 +38,18 @@ trait CompareTrait
      * Compares the array representation
      *
      * @param string $path   partial path to test comparison file
-     * @param array  $result test result as an array
+     * @param mixed  $result test result as an array
      * @return void
      */
-    public function assertJsonSameAsFile($path, $result)
+    public function assertJsonSameAsFile(string $path, $result): void
     {
         if (!file_exists($path)) {
             $path = $this->_compareBasePath . $path;
+
+            $dir = dirname($path);
+            if (!is_dir($dir)) {
+                mkdir($dir, 0777, true);
+            }
         }
         if ($this->_updateComparisons === null) {
             $this->_updateComparisons = env('UPDATE_TEST_COMPARISON_FILES');
@@ -54,8 +59,7 @@ trait CompareTrait
                 $result,
                 JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE
             ) . "\n";
-            $file = new File($path, true);
-            $file->write($indented);
+            file_put_contents($path, $indented);
         }
 
         $expected = json_decode(file_get_contents($path), true);
@@ -69,7 +73,7 @@ trait CompareTrait
      * @param string $result test result as a string
      * @return void
      */
-    public function assertXmlSameAsFile($path, $result)
+    public function assertXmlSameAsFile(string $path, string $result): void
     {
         $indented = $this->indentXml($result);
         $this->assertSameAsFile($path, $indented);
@@ -80,7 +84,7 @@ trait CompareTrait
      *
      * @return void
      */
-    protected function initComparePath()
+    protected function initComparePath(): void
     {
         if ($this->_compareBasePath) {
             return;
@@ -91,7 +95,7 @@ trait CompareTrait
             'TestCase',
             'comparisons',
             substr($reflector->getFileName(), 0, -8)
-        ) . DS;
+        ) . DIRECTORY_SEPARATOR;
     }
 
     /**
@@ -104,7 +108,7 @@ trait CompareTrait
      * @param  string $html the html string
      * @return string
      */
-    protected function indentHtml($html)
+    protected function indentHtml(string $html): string
     {
         $html = trim(preg_replace("/\s+/", ' ', $html));
 
@@ -146,7 +150,7 @@ trait CompareTrait
      * @param  string $xml the xml string
      * @return string
      */
-    protected function indentXml($xml)
+    protected function indentXml(string $xml): string
     {
         $header = '';
         $headerPos = strpos($xml, '?>');

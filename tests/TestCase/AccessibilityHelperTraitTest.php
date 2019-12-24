@@ -1,29 +1,31 @@
 <?php
+declare(strict_types=1);
 
 namespace FriendsOfCake\TestUtilities\Test\TestCase;
 
 use Cake\TestSuite\TestCase;
+use FriendsOfCake\TestUtilities\AccessibilityHelperTrait;
 
 /**
- * @covers FriendsOfCake\TestUtilities\AccessibilityHelperTrait
+ * @covers \FriendsOfCake\TestUtilities\AccessibilityHelperTrait
  */
 class AccessibilityHelperTraitTest extends TestCase
 {
+    use AccessibilityHelperTrait;
 
-    use \FriendsOfCake\TestUtilities\AccessibilityHelperTrait;
-    const TRAIT_NAME = 'FriendsOfCake\\TestUtilities\\AccessibilityHelperTrait';
+    public const TRAIT_NAME = AccessibilityHelperTrait::class;
 
-/**
- * Mock object for the trait.
- *
- * @var \PHPUnit_Framework_MockObject_MockObject
- */
+    /**
+     * Mock object for the trait.
+     *
+     * @var \PHPUnit\Framework\MockObject\MockObject
+     */
     protected $_trait = null;
 
-/**
- * SetUp callback. Generates a new mock object for every test method.
- */
-    public function setUp()
+    /**
+     * SetUp callback. Generates a new mock object for every test method.
+     */
+    public function setUp(): void
     {
         parent::setUp();
         $this->_trait = $this->getMockForTrait(self::TRAIT_NAME);
@@ -31,9 +33,9 @@ class AccessibilityHelperTraitTest extends TestCase
         $this->defaultReflectionTarget = $this->_trait;
     }
 
-/**
- * Tests AccessibilityHelperTrait::resetReflectionCache().
- */
+    /**
+     * Tests AccessibilityHelperTrait::resetReflectionCache().
+     */
     public function testResetReflectionCache()
     {
         $this->setProtectedProperty('_reflectionPropertyCache', ['_reflectionPropertyCache']);
@@ -51,9 +53,9 @@ class AccessibilityHelperTraitTest extends TestCase
         $this->assertEmpty($this->getProtectedProperty('_reflectionInstanceCache'));
     }
 
-/**
- * Tests AccessibilityHelperTrait::setReflectionClassInstance().
- */
+    /**
+     * Tests AccessibilityHelperTrait::setReflectionClassInstance().
+     */
     public function testSetReflectionClassInstance()
     {
         $this->_trait->setReflectionClassInstance($this);
@@ -61,18 +63,18 @@ class AccessibilityHelperTraitTest extends TestCase
         $this->_trait->setReflectionClassInstance($this->_trait, 'MyTestInstance');
 
         $expected = [
-            get_class($this) => $this,
-            'MyTestInstance' => $this->_trait
+            static::class => $this,
+            'MyTestInstance' => $this->_trait,
         ];
         $actual = $this->getProtectedProperty('_reflectionInstanceCache');
         $this->assertSame($expected, $actual);
     }
 
-/**
- * Tests AccessibilityHelperTrait::setReflectionClassInstance().
- *
- * Get existing objects from the cache.
- */
+    /**
+     * Tests AccessibilityHelperTrait::setReflectionClassInstance().
+     *
+     * Get existing objects from the cache.
+     */
     public function testGetReflectionInstanceExisting()
     {
         $this->_trait->setReflectionClassInstance($this, 'MyTestInstance');
@@ -82,27 +84,27 @@ class AccessibilityHelperTraitTest extends TestCase
         $this->assertSame($expected, $actual);
     }
 
-/**
- * Tests AccessibilityHelperTrait::setReflectionClassInstance().
- *
- * Get missing objects from the cache.
- *
- * @expectedException Exception
- */
+    /**
+     * Tests AccessibilityHelperTrait::setReflectionClassInstance().
+     *
+     * Get missing objects from the cache.
+     */
     public function testGetReflectionInstanceMissing()
     {
+        $this->expectException(\Exception::class);
+
         $this->_trait->getReflectionInstance('MyTestInstance');
     }
 
-/**
- * Tests AccessibilityHelperTrait::callProtectedMethod().
- *
- * Call a new protected method. One that hasn't been called before.
- */
+    /**
+     * Tests AccessibilityHelperTrait::callProtectedMethod().
+     *
+     * Call a new protected method. One that hasn't been called before.
+     */
     public function testCallProtectedMethodNewInstance()
     {
         $this->_trait = $this->getMockForTrait(self::TRAIT_NAME, [], '', true, true, true, [
-            '_getReflectionTargetClass', '_getNewReflectionMethod', 'getReflectionInstance'
+            '_getReflectionTargetClass', '_getNewReflectionMethod', 'getReflectionInstance',
         ]);
         $this->setReflectionClassInstance($this->_trait);
         $this->defaultReflectionTarget = $this->_trait;
@@ -144,15 +146,15 @@ class AccessibilityHelperTraitTest extends TestCase
         $this->assertSame($expected, $actual);
     }
 
-/**
- * Tests AccessibilityHelperTrait::callProtectedMethod().
- *
- * Call an existing protected method. One that has been called before.
- */
+    /**
+     * Tests AccessibilityHelperTrait::callProtectedMethod().
+     *
+     * Call an existing protected method. One that has been called before.
+     */
     public function testCallProtectedMethodExistingInstance()
     {
         $this->_trait = $this->getMockForTrait(self::TRAIT_NAME, [], '', true, true, true, [
-            '_getReflectionTargetClass', '_getNewReflectionMethod', 'getReflectionInstance'
+            '_getReflectionTargetClass', '_getNewReflectionMethod', 'getReflectionInstance',
         ]);
         $this->setReflectionClassInstance($this->_trait);
         $this->defaultReflectionTarget = $this->_trait;
@@ -193,13 +195,13 @@ class AccessibilityHelperTraitTest extends TestCase
         $this->assertSame($expected, $actual);
     }
 
-/**
- * Tests AccessibilityHelperTrait::getProtectedProperty().
- */
+    /**
+     * Tests AccessibilityHelperTrait::getProtectedProperty().
+     */
     public function testGetProtectedProperty()
     {
         $this->_trait = $this->getMockForTrait(self::TRAIT_NAME, [], '', true, true, true, [
-            '_getReflectionPropertyInstance', 'getReflectionInstance'
+            '_getReflectionPropertyInstance', 'getReflectionInstance',
         ]);
 
         $property = $this->getMockBuilder('\ReflectionProperty')
@@ -226,13 +228,13 @@ class AccessibilityHelperTraitTest extends TestCase
         $this->assertEquals($expected, $actual);
     }
 
-/**
- * Tests AccessibilityHelperTrait::setProtectedProperty().
- */
+    /**
+     * Tests AccessibilityHelperTrait::setProtectedProperty().
+     */
     public function testSetProtectedProperty()
     {
         $this->_trait = $this->getMockForTrait(self::TRAIT_NAME, [], '', true, true, true, [
-            '_getReflectionPropertyInstance', 'getReflectionInstance'
+            '_getReflectionPropertyInstance', 'getReflectionInstance',
         ]);
 
         $property = $this->getMockBuilder('\ReflectionProperty')
@@ -259,15 +261,15 @@ class AccessibilityHelperTraitTest extends TestCase
         $this->assertEquals($expected, $actual);
     }
 
-/**
- * Tests AccessibilityHelperTrait::_getReflectionPropertyInstance().
- *
- * Without any previously stored properties.
- */
+    /**
+     * Tests AccessibilityHelperTrait::_getReflectionPropertyInstance().
+     *
+     * Without any previously stored properties.
+     */
     public function testProtectedGetReflectionPropertyInstanceWithoutCache()
     {
         $this->_trait = $this->getMockForTrait(self::TRAIT_NAME, [], '', true, true, true, [
-            '_getReflectionTargetClass', '_getNewReflectionProperty'
+            '_getReflectionTargetClass', '_getNewReflectionProperty',
         ]);
         $this->setReflectionClassInstance($this->_trait);
         $this->defaultReflectionTarget = $this->_trait;
@@ -299,15 +301,15 @@ class AccessibilityHelperTraitTest extends TestCase
         $this->assertSame($expected, $actual);
     }
 
-/**
- * Tests AccessibilityHelperTrait::_getReflectionPropertyInstance().
- *
- * With a previously stored property.
- */
+    /**
+     * Tests AccessibilityHelperTrait::_getReflectionPropertyInstance().
+     *
+     * With a previously stored property.
+     */
     public function testProtectedGetReflectionPropertyInstanceWithCache()
     {
         $this->_trait = $this->getMockForTrait(self::TRAIT_NAME, [], '', true, true, true, [
-            '_getReflectionTargetClass', '_getNewReflectionProperty'
+            '_getReflectionTargetClass', '_getNewReflectionProperty',
         ]);
         $this->setReflectionClassInstance($this->_trait);
         $this->defaultReflectionTarget = $this->_trait;
@@ -336,18 +338,18 @@ class AccessibilityHelperTraitTest extends TestCase
         $this->assertSame($expected, $actual);
     }
 
-/**
- * Tests AccessibilityHelperTrait::_getReflectionTargetClass().
- *
- * With valid values.
- */
+    /**
+     * Tests AccessibilityHelperTrait::_getReflectionTargetClass().
+     *
+     * With valid values.
+     */
     public function testProtectedGetReflectionTargetClassValidValues()
     {
         $expected = 'MyClass';
         $actual = $this->callProtectedMethod('_getReflectionTargetClass', ['MyClass']);
         $this->assertSame($expected, $actual);
 
-        $expected = get_class($this);
+        $expected = static::class;
         $actual = $this->callProtectedMethod('_getReflectionTargetClass', [$this]);
         $this->assertSame($expected, $actual);
 
@@ -359,7 +361,7 @@ class AccessibilityHelperTraitTest extends TestCase
 
         $this->_trait->defaultReflectionTarget = $this;
 
-        $expected = get_class($this);
+        $expected = static::class;
         $actual = $this->callProtectedMethod('_getReflectionTargetClass', [null]);
         $this->assertSame($expected, $actual);
 
@@ -368,15 +370,15 @@ class AccessibilityHelperTraitTest extends TestCase
         $this->assertSame($expected, $actual);
     }
 
-/**
- * Tests AccessibilityHelperTrait::_getReflectionTargetClass().
- *
- * With invalid values to trigger the exception.
- *
- * @expectedException \Exception
- */
+    /**
+     * Tests AccessibilityHelperTrait::_getReflectionTargetClass().
+     *
+     * With invalid values to trigger the exception.
+     */
     public function testProtectedGetReflectionTargetClassInvalidValues()
     {
+        $this->expectException(\Exception::class);
+
         $this->callProtectedMethod('_getReflectionTargetClass', [null]);
     }
 }
