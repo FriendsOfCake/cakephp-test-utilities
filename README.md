@@ -13,8 +13,7 @@ composer require friendsofcake/cakephp-test-utilities
 
 ## Traits
 
-The usage of these traits requires at least PHP 5.4. At this point there are
-two traits:
+At this point there are two traits:
 
 1. [`AccessibilityHelperTrait`](#accessibilityhelpertrait) : Gain access protected properties and methods.
 2. [`CounterHelperTrait`](#counterhelpertrait) : Uses counters to help with the order of expectations.
@@ -84,9 +83,10 @@ class MyTest extends TestCase
 {
     use CompareTrait;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
+
         $this->_compareBasePath = 'comparisons/MyTest/';
     }
 }
@@ -109,7 +109,7 @@ public function testExample()
 }
 ```
 
-See [Cake's docs](https://book.cakephp.org/3.0/en/development/testing.html#comparing-test-results-to-a-file)
+See [Cake's docs](https://book.cakephp.org/4/en/development/testing.html#comparing-test-results-to-a-file)
 for more details on usage of `assertSameAsFile` on which these methods are
 based.
 
