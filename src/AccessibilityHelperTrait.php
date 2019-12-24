@@ -94,10 +94,10 @@ trait AccessibilityHelperTrait
      *
      * @param  string $method the method name
      * @param  array  $args   Argument list to call $method with (call_user_func_array style)
-     * @param  string $class  Target reflection class
+     * @param  string|object|null $class  Target reflection class
      * @return mixed
      */
-    public function callProtectedMethod(string $method, array $args = [], ?string $class = null)
+    public function callProtectedMethod(string $method, array $args = [], $class = null)
     {
         $class = $this->_getReflectionTargetClass($class);
         $cacheKey = $class . '_' . $method;
