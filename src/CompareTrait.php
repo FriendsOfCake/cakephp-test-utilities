@@ -46,6 +46,11 @@ trait CompareTrait
     {
         if (!file_exists($path)) {
             $path = $this->_compareBasePath . $path;
+
+            $dir = dirname($path);
+            if (!is_dir($dir)) {
+                mkdir($dir, 0777, true);
+            }
         }
         if ($this->_updateComparisons === null) {
             $this->_updateComparisons = env('UPDATE_TEST_COMPARISON_FILES');
@@ -55,8 +60,7 @@ trait CompareTrait
                 $result,
                 JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE
             ) . "\n";
-            $file = new File($path, true);
-            $file->write($indented);
+            file_put_contents($path, $indented);
         }
 
         $expected = json_decode(file_get_contents($path), true);
