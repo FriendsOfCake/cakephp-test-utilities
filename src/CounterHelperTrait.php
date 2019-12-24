@@ -25,7 +25,7 @@ trait CounterHelperTrait
      * Permits using multiple named counters
      *
      * @param  mixed $name string or object
-     * @return \PHPUnit_Framework_MockObject_Matcher_InvokedAtIndex
+     * @return \PHPUnit\Framework\MockObject\Rule\InvokedAtIndex
      */
     public function nextCounter($name = '')
     {

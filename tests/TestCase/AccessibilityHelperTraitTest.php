@@ -4,19 +4,21 @@ declare(strict_types=1);
 namespace FriendsOfCake\TestUtilities\Test\TestCase;
 
 use Cake\TestSuite\TestCase;
+use FriendsOfCake\TestUtilities\AccessibilityHelperTrait;
 
 /**
- * @covers FriendsOfCake\TestUtilities\AccessibilityHelperTrait
+ * @covers \FriendsOfCake\TestUtilities\AccessibilityHelperTrait
  */
 class AccessibilityHelperTraitTest extends TestCase
 {
-    use \FriendsOfCake\TestUtilities\AccessibilityHelperTrait;
-    public const TRAIT_NAME = 'FriendsOfCake\\TestUtilities\\AccessibilityHelperTrait';
+    use AccessibilityHelperTrait;
+
+    public const TRAIT_NAME = AccessibilityHelperTrait::class;
 
     /**
      * Mock object for the trait.
      *
-     * @var \PHPUnit_Framework_MockObject_MockObject
+     * @var \PHPUnit\Framework\MockObject\MockObject
      */
     protected $_trait = null;
 

@@ -18,7 +18,7 @@ trait AccessibilityHelperTrait
     /**
      * Default target to use for reflection.
      *
-     * @var Object|string
+     * @var object|string
      */
     public $defaultReflectionTarget = null;
 

@@ -4,16 +4,17 @@ declare(strict_types=1);
 namespace FriendsOfCake\TestUtilities\Test\TestCase;
 
 use Cake\TestSuite\TestCase;
-use PHPUnit\Framework\MockObject\Matcher\InvokedAtIndex;
+use FriendsOfCake\TestUtilities\CounterHelperTrait;
+use PHPUnit\Framework\MockObject\Rule\InvokedAtIndex;
 
 /**
- * @covers FriendsOfCake\TestUtilities\CounterHelperTrait
+ * @covers \FriendsOfCake\TestUtilities\CounterHelperTrait
  */
 class CounterHelperTraitTest extends TestCase
 {
     use \FriendsOfCake\TestUtilities\CounterHelperTrait;
 
-    public const TRAIT_NAME = '\\FriendsOfCake\\TestUtilities\\CounterHelperTrait';
+    public const TRAIT_NAME = CounterHelperTrait::class;
 
     /**
      * testNext
