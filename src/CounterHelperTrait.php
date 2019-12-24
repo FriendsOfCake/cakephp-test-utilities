@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace FriendsOfCake\TestUtilities;
 
+use PHPUnit\Framework\MockObject\Rule\InvokedAtIndex;
+
 /**
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
@@ -27,7 +29,7 @@ trait CounterHelperTrait
      * @param  mixed $name string or object
      * @return \PHPUnit\Framework\MockObject\Rule\InvokedAtIndex
      */
-    public function nextCounter($name = '')
+    public function nextCounter($name = ''): InvokedAtIndex
     {
         if (is_object($name)) {
             $name = get_class($name);

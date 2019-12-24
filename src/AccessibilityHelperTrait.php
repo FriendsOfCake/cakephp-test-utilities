@@ -48,7 +48,7 @@ trait AccessibilityHelperTrait
      *
      * @return void
      */
-    public function resetReflectionCache()
+    public function resetReflectionCache(): void
     {
         $this->_reflectionPropertyCache = [];
         $this->_reflectionMethodCache = [];
@@ -59,10 +59,10 @@ trait AccessibilityHelperTrait
      * Map an instance of an object to its class name.
      *
      * @param  object $instance an instance of a class
-     * @param  string $class the key used in the reflection instance class
+     * @param  string|null $class the key used in the reflection instance class
      * @return void
      */
-    public function setReflectionClassInstance($instance, $class = null)
+    public function setReflectionClassInstance(object $instance, ?string $class = null): void
     {
         $class = $class ?: get_class($instance);
         $this->_reflectionInstanceCache[$class] = $instance;
@@ -71,11 +71,11 @@ trait AccessibilityHelperTrait
     /**
      * Get working instance of "$class".
      *
-     * @param  string $class the class name
+     * @param  string|null $class the class name
      * @return object
      * @throws \Exception
      */
-    public function getReflectionInstance($class)
+    public function getReflectionInstance(?string $class = null): object
     {
         $class = $this->_getReflectionTargetClass($class);
         if (empty($this->_reflectionInstanceCache[$class])) {
@@ -97,7 +97,7 @@ trait AccessibilityHelperTrait
      * @param  string $class  Target reflection class
      * @return mixed
      */
-    public function callProtectedMethod($method, $args = [], $class = null)
+    public function callProtectedMethod(string $method, array $args = [], ?string $class = null)
     {
         $class = $this->_getReflectionTargetClass($class);
         $cacheKey = $class . '_' . $method;
@@ -117,7 +117,7 @@ trait AccessibilityHelperTrait
      * @param  string $class    Target reflection class
      * @return mixed
      */
-    public function getProtectedProperty($property, $class = null)
+    public function getProtectedProperty(string $property, ?string $class = null)
     {
         $Instance = $this->_getReflectionPropertyInstance($property, $class);
 
@@ -132,7 +132,7 @@ trait AccessibilityHelperTrait
      * @param  string $class    Target reflection class
      * @return mixed
      */
-    public function setProtectedProperty($property, $value, $class = null)
+    public function setProtectedProperty(string $property, $value, ?string $class = null)
     {
         $Instance = $this->_getReflectionPropertyInstance($property, $class);
 
@@ -143,10 +143,10 @@ trait AccessibilityHelperTrait
      * Get a reflection property object.
      *
      * @param  string $property the property to access/manipulate
-     * @param  string $class the class name
+     * @param  string|null $class the class name
      * @return \ReflectionProperty
      */
-    protected function _getReflectionPropertyInstance($property, $class)
+    protected function _getReflectionPropertyInstance(string $property, ?string $class = null): ReflectionProperty
     {
         $class = $this->_getReflectionTargetClass($class);
         $cacheKey = $class . '_' . $property;
@@ -162,11 +162,11 @@ trait AccessibilityHelperTrait
     /**
      * Get the reflection class name.
      *
-     * @param  string $class the class name
+     * @param  string|object|null $class the class name
      * @return string
      * @throws \Exception
      */
-    protected function _getReflectionTargetClass($class)
+    protected function _getReflectionTargetClass($class = null): string
     {
         $class = $class ?: $this->defaultReflectionTarget;
 
@@ -191,7 +191,7 @@ trait AccessibilityHelperTrait
      * @param  string $method the method name
      * @return \ReflectionMethod
      */
-    protected function _getNewReflectionMethod($class, $method)
+    protected function _getNewReflectionMethod(string $class, string $method): ReflectionMethod
     {
         return new ReflectionMethod($class, $method);
     }
@@ -203,7 +203,7 @@ trait AccessibilityHelperTrait
      * @param  string $property the property to access/manipulate
      * @return \ReflectionProperty
      */
-    protected function _getNewReflectionProperty($class, $property)
+    protected function _getNewReflectionProperty(string $class, string $property): ReflectionProperty
     {
         return new ReflectionProperty($class, $property);
     }

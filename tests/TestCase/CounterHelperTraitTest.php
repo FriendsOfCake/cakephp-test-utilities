@@ -43,15 +43,15 @@ class CounterHelperTraitTest extends TestCase
             ->expects($this->any())
             ->method('at')
             ->will($this->returnCallback(function ($input) {
-                return $input;
+                return new InvokedAtIndex($input);
             }));
 
-        $this->assertSame(0, $this->Test->nextCounter());
-        $this->assertSame(1, $this->Test->nextCounter());
-        $this->assertSame(2, $this->Test->nextCounter());
-        $this->assertSame(3, $this->Test->nextCounter());
-        $this->assertSame(4, $this->Test->nextCounter());
-        $this->assertSame(5, $this->Test->nextCounter());
+        $this->assertSame('invoked at sequence index 0', $this->Test->nextCounter()->toString());
+        $this->assertSame('invoked at sequence index 1', $this->Test->nextCounter()->toString());
+        $this->assertSame('invoked at sequence index 2', $this->Test->nextCounter()->toString());
+        $this->assertSame('invoked at sequence index 3', $this->Test->nextCounter()->toString());
+        $this->assertSame('invoked at sequence index 4', $this->Test->nextCounter()->toString());
+        $this->assertSame('invoked at sequence index 5', $this->Test->nextCounter()->toString());
     }
 
     /**
@@ -68,16 +68,16 @@ class CounterHelperTraitTest extends TestCase
             ->expects($this->any())
             ->method('at')
             ->will($this->returnCallback(function ($input) {
-                return $input;
+                return new InvokedAtIndex($input);
             }));
 
-        $this->assertSame(0, $this->Test->nextCounter());
-        $this->assertSame(0, $this->Test->nextCounter('Foo'));
-        $this->assertSame(0, $this->Test->nextCounter('Bar'));
-        $this->assertSame(1, $this->Test->nextCounter('Foo'));
-        $this->assertSame(1, $this->Test->nextCounter());
-        $this->assertSame(2, $this->Test->nextCounter());
-        $this->assertSame(3, $this->Test->nextCounter());
+        $this->assertSame('invoked at sequence index 0', $this->Test->nextCounter()->toString());
+        $this->assertSame('invoked at sequence index 0', $this->Test->nextCounter('Foo')->toString());
+        $this->assertSame('invoked at sequence index 0', $this->Test->nextCounter('Bar')->toString());
+        $this->assertSame('invoked at sequence index 1', $this->Test->nextCounter('Foo')->toString());
+        $this->assertSame('invoked at sequence index 1', $this->Test->nextCounter()->toString());
+        $this->assertSame('invoked at sequence index 2', $this->Test->nextCounter()->toString());
+        $this->assertSame('invoked at sequence index 3', $this->Test->nextCounter()->toString());
     }
 
     /**
@@ -94,16 +94,16 @@ class CounterHelperTraitTest extends TestCase
             ->expects($this->any())
             ->method('at')
             ->will($this->returnCallback(function ($input) {
-                return $input;
+                return new InvokedAtIndex($input);
             }));
 
-        $this->assertSame(0, $this->Test->nextCounter());
-        $this->assertSame(0, $this->Test->nextCounter($this->Test));
-        $this->assertSame(0, $this->Test->nextCounter($this));
-        $this->assertSame(1, $this->Test->nextCounter($this->Test));
-        $this->assertSame(1, $this->Test->nextCounter());
-        $this->assertSame(2, $this->Test->nextCounter());
-        $this->assertSame(3, $this->Test->nextCounter());
+        $this->assertSame('invoked at sequence index 0', $this->Test->nextCounter()->toString());
+        $this->assertSame('invoked at sequence index 0', $this->Test->nextCounter($this->Test)->toString());
+        $this->assertSame('invoked at sequence index 0', $this->Test->nextCounter($this)->toString());
+        $this->assertSame('invoked at sequence index 1', $this->Test->nextCounter($this->Test)->toString());
+        $this->assertSame('invoked at sequence index 1', $this->Test->nextCounter()->toString());
+        $this->assertSame('invoked at sequence index 2', $this->Test->nextCounter()->toString());
+        $this->assertSame('invoked at sequence index 3', $this->Test->nextCounter()->toString());
     }
 
     /**
