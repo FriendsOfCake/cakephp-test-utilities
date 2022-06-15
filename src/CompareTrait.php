@@ -41,7 +41,7 @@ trait CompareTrait
      * @param mixed  $result test result as an array
      * @return void
      */
-    public function assertJsonSameAsFile(string $path, $result): void
+    public function assertJsonSameAsFile(string $path, mixed $result): void
     {
         if (!file_exists($path)) {
             $path = $this->_compareBasePath . $path;
@@ -51,9 +51,7 @@ trait CompareTrait
                 mkdir($dir, 0777, true);
             }
         }
-        if ($this->_updateComparisons === null) {
-            $this->_updateComparisons = env('UPDATE_TEST_COMPARISON_FILES');
-        }
+        $this->_updateComparisons ??= env('UPDATE_TEST_COMPARISON_FILES') ?: false;
         if ($this->_updateComparisons) {
             $indented = json_encode(
                 $result,

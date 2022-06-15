@@ -18,7 +18,7 @@ trait CounterHelperTrait
      *
      * @var array
      */
-    protected $_expectationCounters = [];
+    protected array $_expectationCounters = [];
 
     /**
      * Returns a matcher that matches when the method it is evaluated for
@@ -26,10 +26,10 @@ trait CounterHelperTrait
      *
      * Permits using multiple named counters
      *
-     * @param  mixed $name string or object
+     * @param string|object $name string or object
      * @return \PHPUnit\Framework\MockObject\Rule\InvokedAtIndex
      */
-    public function nextCounter($name = ''): InvokedAtIndex
+    public function nextCounter(string|object $name = ''): InvokedAtIndex
     {
         if (is_object($name)) {
             $name = get_class($name);
