@@ -27,8 +27,5 @@
             "FriendsOfCake\\TestUtilities\\": "src",
             "FriendsOfCake\\TestUtilities\\Test\\": "tests"
         }
-    },
-    "config": {
-        "preferred-install": "source"
     }
 }
