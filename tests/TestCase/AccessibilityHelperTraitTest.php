@@ -28,6 +28,13 @@ class AccessibilityHelperTraitTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
+
+        // https://github.com/sebastianbergmann/phpunit/issues/4543
+        $this->skipIf(
+            PHP_VERSION_ID >= 80100,
+            'Need PHPUnit 9+ to run these tests on PHP 8.1+'
+        );
+
         $this->_trait = $this->getMockForTrait(self::TRAIT_NAME);
         $this->setReflectionClassInstance($this->_trait);
         $this->defaultReflectionTarget = $this->_trait;

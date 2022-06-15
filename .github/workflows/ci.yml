@@ -1,0 +1,68 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - '*'
+
+jobs:
+  testsuite:
+    runs-on: ubuntu-18.04
+    strategy:
+      fail-fast: false
+      matrix:
+        php-version: ['7.4', '8.0', '8.1']
+        prefer-lowest: ['']
+        include:
+          - php-version: '7.2'
+            prefer-lowest: 'prefer-lowest'
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ matrix.php-version }}
+        extensions: mbstring, intl, pdo_${{ matrix.db-type }}
+        coverage: none
+
+    - name: Composer install
+      run: |
+        composer --version
+        if ${{ matrix.prefer-lowest == 'prefer-lowest' }}; then
+          composer update --prefer-lowest --prefer-stable
+        else
+          composer install
+        fi
+
+    - name: Run PHPUnit
+      run: vendor/bin/phpunit
+
+  cs-stan:
+    name: Coding Standard & Static Analysis
+    runs-on: ubuntu-18.04
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '7.4'
+        extensions: mbstring, intl
+        coverage: none
+        tools: phpstan:1.7,cs2pr
+
+    - name: Composer Install
+      run: composer require cakephp/cakephp-codesniffer:^4.2
+
+    - name: Run phpcs
+      run: vendor/bin/phpcs --report=checkstyle --standard=vendor/cakephp/cakephp-codesniffer/CakePHP src/ tests/ | cs2pr
+
+    - name: Run phpstan
+      if: always()
+      run: phpstan --error-format=github
