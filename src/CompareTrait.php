@@ -51,7 +51,7 @@ trait CompareTrait
                 mkdir($dir, 0777, true);
             }
         }
-        $this->_updateComparisons ??= env('UPDATE_TEST_COMPARISON_FILES') ?: false;
+        $this->_updateComparisons ??= getenv('UPDATE_TEST_COMPARISON_FILES') ?: false;
         if ($this->_updateComparisons) {
             $indented = json_encode(
                 $result,
@@ -103,7 +103,7 @@ trait CompareTrait
      * Indent tags
      * Indent atttributes one level more than the tag
      *
-     * @param  string $html the html string
+     * @param string $html the html string
      * @return string
      */
     protected function indentHtml(string $html): string
@@ -145,7 +145,7 @@ trait CompareTrait
      * However stash the xml header so there isn't an extra level of unwanted
      * indentation
      *
-     * @param  string $xml the xml string
+     * @param string $xml the xml string
      * @return string
      */
     protected function indentXml(string $xml): string

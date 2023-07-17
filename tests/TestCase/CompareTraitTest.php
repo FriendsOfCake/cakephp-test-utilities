@@ -53,24 +53,25 @@ class CompareTraitTest extends TestCase
         $this->assertXmlSameAsFile(basename($name), $input);
     }
 
-    public function htmlInputFilesProvider()
+    public static function htmlInputFilesProvider()
     {
-        return $this->findFiles('html');
+        return self::findFiles('html');
     }
 
-    public function jsonInputFilesProvider()
+    public static function jsonInputFilesProvider()
     {
-        return $this->findFiles('json');
+        return self::findFiles('json');
     }
 
-    public function xmlInputFilesProvider()
+    public static function xmlInputFilesProvider()
     {
-        return $this->findFiles('xml');
+        return self::findFiles('xml');
     }
 
-    protected function findFiles($format)
+    protected static function findFiles($format)
     {
-        $reflector = new ReflectionClass($this);
+        // phpcs:ignore
+        $reflector = new ReflectionClass(__CLASS__);
         $path = dirname($reflector->getFileName()) . '/' . $format . '/';
 
         $return = [];
