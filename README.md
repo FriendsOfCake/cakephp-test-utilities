@@ -16,7 +16,7 @@ composer require friendsofcake/cakephp-test-utilities
 At this point there are two traits:
 
 1. [`AccessibilityHelperTrait`](#accessibilityhelpertrait) : Gain access protected properties and methods.
-2. [`CounterHelperTrait`](#counterhelpertrait) : Uses counters to help with the order of expectations.
+2. [`CompareTrait`](#comparetrait) : Assert methods, comparing to files for: HTML, JSON, XML
 
 ### AccessibilityHelperTrait
 
@@ -109,81 +109,6 @@ public function testExample()
 }
 ```
 
-See [Cake's docs](https://book.cakephp.org/4/en/development/testing.html#comparing-test-results-to-a-file)
+See [Cake's docs](https://book.cakephp.org/5/en/development/testing.html#comparing-test-results-to-a-file)
 for more details on usage of `assertSameAsFile` on which these methods are
 based.
-
-### CounterHelperTrait
-
-This trait helps with defining expectations that are order specific.
-
-#### Setup
-
-Add the trait at the top of your test case:
-
-``` php
-use \FriendsOfCake\TestUtilities\CounterHelperTrait;
-```
-
-That's it.
-
-#### Single mock objects
-
-Usually you would do something similar to this to set orders for your mock
-objects:
-
-``` php
-$mock->expects($this->at(0))
-    ->method('myMethod')
-    ->with('myParameter')
-    ->will($this->returnValue('myFirstReturnValue'));
-
-$mock->expects($this->at(1))
-    ->method('myMethod')
-    ->with('myParameter')
-    ->will($this->returnValue('mySecondReturnValue'));
-```
-
-Instead this trait implements a `CounterHelperTrait::next()` method. It will
-track the indices for you, so you can easily switch calls or add some later,
-without having to change them. Example:
-
-``` php
-$mock->expects($this->nextCounter()) // = $this->at(0)
-    ->method('myMethod')
-    ->with('myParameter')
-    ->will($this->returnValue('myFirstReturnValue'));
-
-$mock->expects($this->nextCounter()) // = $this->at(1)
-    ->method('myMethod')
-    ->with('myParameter')
-    ->will($this->returnValue('mySecondReturnValue'));
-```
-
-#### Multiple mock objects
-
-If you have multiple mock objects you need to use multiple independent
-counters. For this to work you need to identify which counter you want to use
-by passing an object (or a string):
-
-``` php
-$mock1->expects($this->nextCounter($mock1)) // = $this->at(0)
-    ->method('myMethod')
-    ->with('myParameter')
-    ->will($this->returnValue('myFirstReturnValue'));
-
-$mock2->expects($this->nextCounter($mock2)) // = $this->at(0)
-    ->method('myMethod')
-    ->with('myParameter')
-    ->will($this->returnValue('myFirstReturnValue'));
-
-$mock1->expects($this->nextCounter($mock1)) // = $this->at(1)
-    ->method('myMethod')
-    ->with('myParameter')
-    ->will($this->returnValue('mySecondReturnValue'));
-
-$mock2->expects($this->nextCounter($mock2)) // = $this->at(1)
-    ->method('myMethod')
-    ->with('myParameter')
-    ->will($this->returnValue('mySecondReturnValue'));
-```

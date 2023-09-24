@@ -10,33 +10,32 @@ on:
 
 jobs:
   testsuite:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-22.04
     strategy:
       fail-fast: false
       matrix:
-        php-version: ['7.4', '8.0', '8.1']
+        php-version: ['8.2']
         prefer-lowest: ['']
         include:
-          - php-version: '7.2'
+          - php-version: '8.1'
             prefer-lowest: 'prefer-lowest'
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
         php-version: ${{ matrix.php-version }}
-        extensions: mbstring, intl, pdo_${{ matrix.db-type }}
+        extensions: mbstring, intl
         coverage: none
 
     - name: Composer install
       run: |
-        composer --version
         if ${{ matrix.prefer-lowest == 'prefer-lowest' }}; then
           composer update --prefer-lowest --prefer-stable
         else
-          composer install
+          composer update
         fi
 
     - name: Run PHPUnit
@@ -44,21 +43,21 @@ jobs:
 
   cs-stan:
     name: Coding Standard & Static Analysis
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-22.04
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
-        php-version: '7.4'
+        php-version: '8.1'
         extensions: mbstring, intl
         coverage: none
-        tools: phpstan:1.7,cs2pr
+        tools: phpstan:1.10,cs2pr
 
     - name: Composer Install
-      run: composer require cakephp/cakephp-codesniffer:^4.2
+      run: composer require cakephp/cakephp-codesniffer
 
     - name: Run phpcs
       run: vendor/bin/phpcs --report=checkstyle --standard=vendor/cakephp/cakephp-codesniffer/CakePHP src/ tests/ | cs2pr
