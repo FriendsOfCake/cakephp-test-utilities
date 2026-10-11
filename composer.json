@@ -19,10 +19,10 @@
         }
     ],
     "require": {
-        "cakephp/cakephp": "^5.0"
+        "cakephp/cakephp": "^6.0@dev"
     },
     "require-dev": {
-        "phpunit/phpunit": "^10.1"
+        "phpunit/phpunit": "^13.0"
     },
     "autoload": {
         "psr-4": {
@@ -35,5 +35,7 @@
         "allow-plugins": {
             "dealerdirect/phpcodesniffer-composer-installer": true
         }
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
