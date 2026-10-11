@@ -44,18 +44,18 @@ trait CompareTrait
     public function assertJsonSameAsFile(string $path, mixed $result): void
     {
         if (!file_exists($path)) {
-            $path = $this->_compareBasePath . $path;
+            $path = $this->compareBasePath . $path;
 
             $dir = dirname($path);
             if (!is_dir($dir)) {
                 mkdir($dir, 0777, true);
             }
         }
-        $this->_updateComparisons ??= getenv('UPDATE_TEST_COMPARISON_FILES') ?: false;
-        if ($this->_updateComparisons) {
+        $this->updateComparisons ??= (bool)getenv('UPDATE_TEST_COMPARISON_FILES');
+        if ($this->updateComparisons) {
             $indented = json_encode(
                 $result,
-                JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE
+                JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE,
             ) . "\n";
             file_put_contents($path, $indented);
         }
@@ -84,15 +84,15 @@ trait CompareTrait
      */
     protected function initComparePath(): void
     {
-        if ($this->_compareBasePath) {
+        if ($this->compareBasePath) {
             return;
         }
 
         $reflector = new ReflectionClass($this);
-        $this->_compareBasePath = str_replace(
+        $this->compareBasePath = str_replace(
             'TestCase',
             'comparisons',
-            substr($reflector->getFileName(), 0, -8)
+            substr($reflector->getFileName(), 0, -8),
         ) . DIRECTORY_SEPARATOR;
     }
 
@@ -120,7 +120,7 @@ trait CompareTrait
                 $match[1] = preg_replace(
                     '@ ([\w-]+="[^"]*")@',
                     "\n  $indent\\1",
-                    $match[1]
+                    $match[1],
                 );
                 $isClosingTag = (bool)$match[2];
                 $isSelfClosingTag = (bool)$match[3];

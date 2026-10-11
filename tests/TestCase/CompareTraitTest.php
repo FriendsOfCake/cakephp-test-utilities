@@ -5,6 +5,7 @@ namespace FriendsOfCake\TestUtilities\Test\TestCase;
 
 use Cake\TestSuite\TestCase;
 use FriendsOfCake\TestUtilities\CompareTrait;
+use PHPUnit\Framework\Attributes\DataProvider;
 use ReflectionClass;
 
 class CompareTraitTest extends TestCase
@@ -17,58 +18,43 @@ class CompareTraitTest extends TestCase
         $this->initComparePath();
     }
 
-    /**
-     * testAssertHtmlSameAsFile
-     *
-     * @dataProvider htmlInputFilesProvider
-     * @param mixed $name
-     */
-    public function testAssertHtmlSameAsFile($name)
+    #[DataProvider('htmlInputFilesProvider')]
+    public function testAssertHtmlSameAsFile(string $name): void
     {
         $input = file_get_contents($name);
         $this->assertHtmlSameAsFile(basename($name), $input);
     }
 
-    /**
-     * testAssertJsonSameAsFile
-     *
-     * @dataProvider jsonInputFilesProvider
-     * @param mixed $name
-     */
-    public function testAssertJsonSameAsFile($name)
+    #[DataProvider('jsonInputFilesProvider')]
+    public function testAssertJsonSameAsFile(string $name): void
     {
         $input = json_decode(file_get_contents($name), true);
         $this->assertJsonSameAsFile(basename($name), $input);
     }
 
-    /**
-     * testAssertXmlSameAsFile
-     *
-     * @dataProvider xmlInputFilesProvider
-     * @param mixed $name
-     */
-    public function testAssertXmlSameAsFile($name)
+    #[DataProvider('xmlInputFilesProvider')]
+    public function testAssertXmlSameAsFile(string $name): void
     {
         $input = file_get_contents($name);
         $this->assertXmlSameAsFile(basename($name), $input);
     }
 
-    public static function htmlInputFilesProvider()
+    public static function htmlInputFilesProvider(): array
     {
         return self::findFiles('html');
     }
 
-    public static function jsonInputFilesProvider()
+    public static function jsonInputFilesProvider(): array
     {
         return self::findFiles('json');
     }
 
-    public static function xmlInputFilesProvider()
+    public static function xmlInputFilesProvider(): array
     {
         return self::findFiles('xml');
     }
 
-    protected static function findFiles($format)
+    protected static function findFiles(string $format): array
     {
         // phpcs:ignore
         $reflector = new ReflectionClass(__CLASS__);
